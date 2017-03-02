@@ -34,7 +34,8 @@ endif
 "#################################################################################################
 
 " クリップボード連携
-set clipboard+=unnamedplus
+" set clipboard+=unnamedplus
+set clipboard=unnamedplus
 
 " ステータス行を常に表示
 set laststatus=2
