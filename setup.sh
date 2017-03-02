@@ -1,5 +1,5 @@
 #!/bin/bash -e
 
-ln -s .vimrc ~/.vimrc
-ln -s dein.toml ~/.vim/dein.toml
-ln -s .tmux.conf ~/.tmux.conf
+ln -sf ~/dotfiles/.vimrc ~/.vimrc
+ln -sf ~/dotfiles/dein.toml ~/.vim/dein.toml
+ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
