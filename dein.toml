@@ -141,15 +141,12 @@ repo = 'Lokaltog/vim-easymotion'
 hook_add = '''
   nmap <S-CR> <Plug>(easymotion-s2)
 '''
-
 [[plugins]]
-repo = 'taichouchou2/html5.vim'
+repo = 'othree/yajs.vim'
+on_ft = 'javascript'
 
 [[plugins]]
 repo = 'hail2u/vim-css3-syntax'
-
-[[plugins]]
-repo = 'taichouchou2/html5.vim'
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
@@ -189,5 +186,12 @@ hook_add = '''
 
 [[plugins]]
 repo = 'vim-scripts/Wombat'
+hook_add = '''
+  set background=dark
+  " colorscheme 設定は source 後に行う必要があるので VimEnter で行う。
+  " 但し Colorscheme イベントの発生が抑制されないよう nented を付ける。
+  au MyAutoCmd VimEnter * nested colorscheme wombat
+'''
 
-
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
