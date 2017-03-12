@@ -29,6 +29,9 @@ on_i = 1
 on_ft = ['snippet']
 
 [[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
 repo = 'Shougo/neocomplcache'
 on_i = 1
 hook_add = '''
