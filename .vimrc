@@ -7,6 +7,25 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
+"==========================
+"キーマップ系設定
+"==========================
+
+"LeaderをSpaceに変更
+let mapleader = "\<Space>"
+
+" 端末のCtrl+Spaceのキーマップの上書き対策
+imap <Nul> <C-Space>
+
+" カーソルを表示行で移動する。
+nnoremap j gj
+nnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up>   gk
+
+" Esc２回でハイライト消去
+nnoremap <ESC><ESC> :nohlsearch<CR>
+
 "#################################################################################################
 " dein settings {{{
 " dein自体の自動インストール
@@ -40,23 +59,8 @@ set clipboard=unnamedplus
 " ステータス行を常に表示
 set laststatus=2
 
-" 端末のCtrl+Spaceのキーマップの上書き対策
-imap <Nul> <C-Space>
-
-" カーソルを表示行で移動する。
-nnoremap j gj
-nnoremap k gk
-nnoremap <Down> gj
-nnoremap <Up>   gk
-
-"LeaderをSpaceに変更
-let mapleader = "\<Space>"
-
 " 検索結果ハイライト
 set hlsearch
-
-" Esc２回でハイライト消去
-nnoremap <ESC><ESC> :nohlsearch<CR>
 
 "新しいバッファを右に開く
 set splitright

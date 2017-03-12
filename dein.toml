@@ -100,6 +100,18 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'Shougo/unite.vim'
+hook_add = '''
+  nnoremap <Leader>b :<C-u>Unite buffer<CR>
+  nnoremap <leader>f :<C-u>UniteWithBufferDir file file/new -buffer-name=file<CR>
+  "ドットファイルも表示する
+  call unite#custom#source('file', 'matchers', 'matcher_default')
+'''
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
 repo = 'itchyny/lightline.vim'
 
 # [[plugins]]
