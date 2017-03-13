@@ -115,6 +115,12 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'Shougo/unite-outline'
+hook_add = '''
+  nnoremap <Leader>o :<C-u>Unite outline<CR>
+'''
+
+[[plugins]]
 repo = 'Shougo/neomru.vim'
 
 [[plugins]]
