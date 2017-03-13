@@ -1,0 +1,7 @@
+# PHP関連
+composer.phar
+/vendor/
+
+# node関連
+node_modules/
+
