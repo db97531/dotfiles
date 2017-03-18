@@ -221,5 +221,3 @@ hook_add = '''
   au MyAutoCmd VimEnter * nested colorscheme wombat
 '''
 
-[[plugins]]
-repo = 'vim-jp/vimdoc-ja'
