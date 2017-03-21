@@ -1,7 +1,7 @@
 #!/bin/bash
 
 options=(
-
+    -font               'RictyDiminished-Regular 14'
     -terminal           'urxvt'
     -color-enabled      'true'
     -color-window       '#111111,#111111,#268bd2'
