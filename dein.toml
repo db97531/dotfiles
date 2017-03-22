@@ -118,6 +118,7 @@ repo = 'Shougo/unite.vim'
 hook_add = '''
   nnoremap <Leader>b :<C-u>Unite buffer<CR>
   nnoremap <leader>f :<C-u>UniteWithBufferDir file file/new -buffer-name=file<CR>
+  nnoremap <leader>m :<C-u>UniteWithBufferDir file file_mru<CR>
   "ドットファイルも表示する
   call unite#custom#source('file', 'matchers', 'matcher_default')
 '''
