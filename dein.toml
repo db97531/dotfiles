@@ -37,6 +37,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
+hook_add = '''
+  let g:gitgutter_highlight_lines = 1
+'''
 
 [[plugins]]
 repo = 'Shougo/neocomplcache'
