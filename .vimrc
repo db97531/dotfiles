@@ -116,6 +116,10 @@ set listchars=tab:>\ ,extends:<
 "補完時に大文字小文字を区別しない
 set infercase
 
+"上下の表示を確保
+set scrolloff=8 
+
+"ウィンドウサイズの自動調整を無効化
 set noequalalways
 
 " http://inari.hatenablog.com/entry/2014/05/05/231307
