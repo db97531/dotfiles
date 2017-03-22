@@ -6,7 +6,7 @@ urxvt.termName: rxvt
 
 urxvt.iconFile: /usr/share/icons/Humanity/apps/128/gnome-terminal.svg
 urxvt.font: xft:RictyDiminished:Regular:size=14:antialias=true
-urxvt.imFont: xft:RictyDiminished:Regular:size=14:antialias=true
+urxvt.imFont: fixed
 urxvt.letterSpace: -1
 
 ! color
@@ -23,10 +23,33 @@ urxvt.color12: #7799ff
 urxvt.fading: 30
 
 ! input with IM at cursor position
-URxvt*inputMethod: fcitx
-URxvt*preeditType: OnTheSpot
-URxvt.inputMethod: fcitx
-URxvt.preeditType: OnTheSpot
+! urxvt*inputMethod: fcitx
+! urxvt*preeditType: OnTheSpot
+! urxvt*perl-ext: xim-onthespot
+urxvt.inputMethod: fcitx
+urxvt.preeditType: OnTheSpot
+urxvt.perl-ext: xim-onthespot
+
+! rxvt settings
+rxvt.geometry: 84x24
+rxvt.saveLines: 512
+rxvt.scrollBar: false
+rxvt.termName: rxvt
+
+rxvt.iconFile: /usr/share/icons/Humanity/apps/128/gnome-terminal.svg
+rxvt.font: xft:RictyDiminished:Regular:size=14:antialias=true
+rxvt.imFont: fixed 
+rxvt.letterSpace: -1
+
+! color
+rxvt.depth: 32
+rxvt.foreground: rgba:ffff/ffff/ffff/ffff
+rxvt.background: rgba:0000/0000/0000/cccc
+rxvt.inputMethod: fcitx
+! rxvt.preeditType: OnTheSpot 
+! rxvt.preeditType: Root 
+! rxvt.preeditType: OverTheSpot 
+! rxvt.perl-ext: xim-onthespot
 
 ! clipboard
 ! $ urxvt --perl-lib $HOME/.urxvt/urxvt-perls
