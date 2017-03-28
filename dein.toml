@@ -81,6 +81,14 @@ hook_add = '''
 " 
   inoremap <expr><C-y>  neocomplcache#close_popup()
   inoremap <expr><C-e>  neocomplcache#cancel_popup()
+" Endwiseとの併用のための設定
+" <CR>: close popup and save indent.
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  function! s:my_cr_function()
+    return neocomplcache#smart_close_popup() . "\<CR>"
+    " For no inserting <CR> key.
+    "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+  endfunction
 '''
 
 [[plugins]]
@@ -210,6 +218,9 @@ repo = 'Shougo/context_filetype.vim'
 [[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
