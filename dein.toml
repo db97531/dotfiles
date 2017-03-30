@@ -271,6 +271,12 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'AndrewRadev/switch.vim'
+hook_add = '''
+  let g:switch_mapping = "-"
+'''
+
+[[plugins]]
 repo = 'vim-scripts/Wombat'
 hook_add = '''
   set background=dark
