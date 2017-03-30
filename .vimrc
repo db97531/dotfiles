@@ -23,6 +23,9 @@ nnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
 
+" Q(exモード)を無効化
+nnoremap Q <Nop>
+
 " Esc２回でハイライト消去
 nnoremap <ESC><ESC> :nohlsearch<CR>
 
