@@ -125,21 +125,35 @@ hook_add = '''
 [[plugins]]
 repo = 'Shougo/unite.vim'
 hook_add = '''
-  nnoremap <Leader>b :<C-u>Unite buffer<CR>
-  nnoremap <leader>f :<C-u>UniteWithBufferDir file file/new -buffer-name=file<CR>
-  nnoremap <leader>m :<C-u>UniteWithBufferDir file file_mru<CR>
+  "インサートモードで開始
+  " let g:unite_enable_start_insert=1
+  nnoremap <Leader>ub :<C-u>Unite buffer<CR>
+  nnoremap <leader>uf :<C-u>UniteWithBufferDir file file/new -buffer-name=file<CR>
+  nnoremap <leader>um :<C-u>Unite file_mru buffer<CR>
+  nnoremap <leader>ur :<C-u>Unite -buffer-name=register register<CR>
+  nnoremap <leader>uh :<C-u>Unite history/yank<CR>
+
   "ドットファイルも表示する
   call unite#custom#source('file', 'matchers', 'matcher_default')
+
+  "ESC*2でuniteを終了
+  autocmd FileType unite call s:unite_my_settings()
+  function! s:unite_my_settings()"{{{
+      nmap <buffer> <ESC><ESC> <Plug>(unite_exit)
+  endfunction"}}}
 '''
 
 [[plugins]]
 repo = 'Shougo/unite-outline'
 hook_add = '''
-  nnoremap <Leader>o :<C-u>Unite outline<CR>
+  nnoremap <Leader>uo :<C-u>Unite outline<CR>
 '''
 
 [[plugins]]
 repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
