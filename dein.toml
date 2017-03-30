@@ -248,6 +248,15 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'kana/vim-operator-user.git'
+
+[[plugins]]
+repo = 'kana/vim-operator-replace.git'
+hook_add = '''
+  map R <Plug>(operator-replace)
+'''
+
+[[plugins]]
 repo = 'vim-scripts/Wombat'
 hook_add = '''
   set background=dark
