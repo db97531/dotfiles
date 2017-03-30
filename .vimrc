@@ -146,8 +146,18 @@ endif
 " 補完の際にプレビューウィンドウを表示しない
 set completeopt-=preview
 
+"==============================================================
+"
+" プラグイン固有の設定
+"
+"==============================================================
+
 " quickrunのバッファを<Leader>qで閉じる
 nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
+
+" NERDTree隠しファイルも初期表示する
+" dein.tomlでのhook_addで設定できなかったためここで設定する
+let NERDTreeShowHidden = 1
 
 " Enable filetype plugins
 filetype plugin on
