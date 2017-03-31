@@ -8,6 +8,12 @@ augroup MyAutoCmd
 augroup END
 
 "==========================
+"エンコーディング設定
+"==========================
+set encoding=utf-8
+scriptencoding utf-8
+
+"==========================
 "キーマップ系設定
 "==========================
 
@@ -99,7 +105,7 @@ set expandtab
 set smartindent
 
 "行末・行頭から次の行へ移動可能に
-set whichwrap=h,l,<,>,[,],b,s 
+set whichwrap=h,l,<,>,[,],b,s
 
 "タブ文字の表示幅
 set tabstop=4
@@ -120,7 +126,7 @@ set listchars=tab:>\ ,extends:<
 set infercase
 
 "上下の表示を確保
-set scrolloff=8 
+set scrolloff=8
 
 "ウィンドウサイズの自動調整を無効化
 set noequalalways
