@@ -35,6 +35,10 @@ nnoremap Q <Nop>
 " Esc２回でハイライト消去
 nnoremap <ESC><ESC> :nohlsearch<CR>
 
+" ウィンドウ分割
+nnoremap <C-w>/ :vs<CR>
+nnoremap <C-w>- :sp<CR>
+
 "#################################################################################################
 " dein settings {{{
 " dein自体の自動インストール
