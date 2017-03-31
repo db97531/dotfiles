@@ -62,7 +62,7 @@ hook_add = '''
       let g:neocomplcache_omni_patterns = {}
   endif
   let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
-  
+
   " Pythonの補完設定
   if !exists('g:neocomplcache_force_omni_patterns')
   let g:neocomplcache_force_omni_patterns = {}
@@ -78,7 +78,7 @@ hook_add = '''
 " 対のカッコが削除されなくなる。
 "  inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 "  inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-" 
+"
   inoremap <expr><C-y>  neocomplcache#close_popup()
   inoremap <expr><C-e>  neocomplcache#cancel_popup()
 " Endwiseとの併用のための設定
@@ -180,7 +180,7 @@ repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'plasticboy/vim-markdown'
 hook_add = '''
-  let g:vim_markdown_folding_disabled=1 
+  let g:vim_markdown_folding_disabled=1
 '''
 
 [[plugins]]
@@ -278,6 +278,12 @@ hook_add = '''
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo = 'simeji/winresizer'
+hook_add = '''
+  let g:winresizer_start_key = '<C-w>r'
+'''
 
 [[plugins]]
 repo = 'vim-scripts/Wombat'
