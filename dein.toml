@@ -277,6 +277,9 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
 repo = 'vim-scripts/Wombat'
 hook_add = '''
   set background=dark
