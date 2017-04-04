@@ -87,7 +87,13 @@ set ignorecase
 "行番号の表示
 set number
 
-"スワップファイル作らない
+"保存しなくても別ファイルを開けるように
+set hidden
+
+"新しく開く代わりにすでに開いているバッファを開く
+set switchbuf=useopen
+
+"スワップファイfji jeijル作らない
 set noswapfile
 
 "バックアップ取らない

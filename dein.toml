@@ -22,6 +22,7 @@ hook_add = '''
   smap <C-k>  <Plug>(neosnippet_expand_or_jump)
   xmap <C-k>  <Plug>(neosnippet_expand_target)
 '''
+
 [[plugins]]
 repo = 'Shougo/neosnippet'
 depends = ['neosnippet-snippets']
@@ -283,6 +284,13 @@ repo = 'editorconfig/editorconfig-vim'
 repo = 'simeji/winresizer'
 hook_add = '''
   let g:winresizer_start_key = '<C-w>r'
+'''
+
+[[plugins]]
+repo = 'terryma/vim-expand-region'
+hook_add = '''
+  vmap v <Plug>(expand_region_expand)
+  vmap <C-v> <Plug>(expand_region_shrink)
 '''
 
 [[plugins]]
