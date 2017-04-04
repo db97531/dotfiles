@@ -39,6 +39,9 @@ nnoremap <ESC><ESC> :nohlsearch<CR>
 nnoremap <C-w>/ :vs<CR>
 nnoremap <C-w>- :sp<CR>
 
+" w!! でスーパーユーザーとして保存（sudoが使える環境限定）
+cmap w!! w !sudo tee > /dev/null %
+
 "#################################################################################################
 " dein settings {{{
 " dein自体の自動インストール
