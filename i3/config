@@ -9,6 +9,9 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# vmware-toolsを使用するために必要
+exec vmware-user-suid-wrapper --no-startup-id
+
 set $mod Mod3
 
 # set $terminal i3-sensible-terminal
