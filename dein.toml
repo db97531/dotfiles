@@ -13,6 +13,7 @@ hook_add = '''
   let g:go_highlight_operators = 1
   let g:go_term_enabled = 1
   let g:go_highlight_build_constraints = 1
+  nmap <Leader>t :GoTest<CR>
 '''
 
 [[plugins]]
@@ -306,11 +307,26 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'vim-scripts/Wombat'
+# repo = 'vim-scripts/Wombat'
+repo = 'sjl/badwolf'
 hook_add = '''
   set background=dark
   " colorscheme 設定は source 後に行う必要があるので VimEnter で行う。
   " 但し Colorscheme イベントの発生が抑制されないよう nented を付ける。
-  au MyAutoCmd VimEnter * nested colorscheme wombat
+  " au MyAutoCmd VimEnter * nested colorscheme wombat
+  au MyAutoCmd VimEnter * nested colorscheme badwolf
+'''
+[[plugins]]
+repo = 'scrooloose/syntastic'
+
+[[plugins]]
+repo = 'millermedeiros/vim-esformatter'
+hook_add = '''
+  nnoremap <silent> <leader>es :Esformatter<CR>
 '''
 
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+
+[[plugins]]
+repo = 'kana/vim-textobj-line'
