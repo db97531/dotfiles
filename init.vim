@@ -46,7 +46,7 @@ cmap w!! w !sudo tee > /dev/null %
 " dein settings {{{
 " dein自体の自動インストール
 " let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
-let s:cache_home = expand('~/.vim')
+let s:cache_home = expand('~/.config/nvim/')
 let s:dein_dir = s:cache_home . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if !isdirectory(s:dein_repo_dir)
