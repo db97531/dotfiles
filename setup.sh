@@ -7,5 +7,6 @@ ln -sf ~/dotfiles/.gitignore ~/.gitignore
 ln -sf ~/dotfiles/.Xdefaults ~/.Xdefaults
 ln -sf ~/dotfiles/.xbindkeysrc ~/.xbindkeysrc
 ln -sf ~/dotfiles/.editorconfig ~/.editorconfig
+ln -sf ~/dotfiles/.zshrc ~/.zshrc
 
 git config --global core.excludesfile ~/.gitignore
