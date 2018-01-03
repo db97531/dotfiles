@@ -1,7 +1,12 @@
 #!/bin/bash -e
 
+echo "git user?"
+read GIT_USER
+echo "git emal?"
+read GIT_EMAIL
+export LANG=C
+
 # Git
-sudo apt install -y git
 git config --global user.name $GIT_USER
 git config --global user.email $GIT_EMAIL
 git config --global alias.s status
@@ -31,3 +36,31 @@ sudo apt install -y vim-migemo
 # zshインストール
 sudo apt install -y zsh
 chsh -s /usr/bin/zsh
+
+# Tmux
+sudo apt install -y tmux
+
+# Golang
+mkdir ~/.go
+sudo apt install -y software-properties-common
+sudo add-apt-repository -y ppa:longsleep/golang-backports
+sudo apt update -y
+sudo apt-get install -y golang-go
+export GOPATH="$HOME/.go"
+export PATH="$PATH:$GOPATH/bin"
+echo " " >> ~/.bashrc
+echo '# golang setting' >> ~/.bashrc
+echo 'export GOPATH="$HOME/.go"' >> ~/.bashrc
+echo 'export PATH="$PATH:$GOPATH/bin"' >> ~/.bashrc
+
+# peco
+go get github.com/peco/peco/cmd/peco
+
+# Docker
+# wget -qO- https://get.docker.com/ | sh
+# sudo usermod -aG docker $USER
+
+# Docker-compose
+# sudo -i curl -L "https://github.com/docker/compose/releases/download/1.10.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# sudo chmod +x /usr/local/bin/docker-compose
+
