@@ -6,6 +6,9 @@ echo "git emal?"
 read GIT_EMAIL
 export LANG=C
 
+# nanoアンインストール
+sudo apt remove -y nano
+
 # Git
 git config --global user.name $GIT_USER
 git config --global user.email $GIT_EMAIL
@@ -22,7 +25,7 @@ sudo apt-get install -y build-essential
 # neovimインストール
 sudo apt-get install -y software-properties-common
 sudo add-apt-repository ppa:neovim-ppa/stable -y
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get install -y neovim
 sudo apt-get install -y python-dev python-pip python3-dev python3-pip
 mkdir -p ~/.config/nvim
@@ -48,13 +51,15 @@ sudo apt update -y
 sudo apt-get install -y golang-go
 export GOPATH="$HOME/.go"
 export PATH="$PATH:$GOPATH/bin"
-echo " " >> ~/.bashrc
-echo '# golang setting' >> ~/.bashrc
-echo 'export GOPATH="$HOME/.go"' >> ~/.bashrc
-echo 'export PATH="$PATH:$GOPATH/bin"' >> ~/.bashrc
 
 # peco
 go get github.com/peco/peco/cmd/peco
+
+# ghq
+go get github.com/motemen/ghq
+
+# pet
+go get github.com/knqyf263/pet
 
 # Docker
 # wget -qO- https://get.docker.com/ | sh

@@ -1,0 +1,44 @@
+[[snippets]]
+  description = "yahoo-crawler ignore_sellers.txt をリモート更新"
+  command = "scp /home/db97531/.ghq/bitbucket.org/db97531/yahoo-crawler/ignore_sellers.txt vps:/home/db97531/.ghq/bitbucket.org/db97531/yahoo-crawler/"
+  output = ""
+
+[[snippets]]
+  description = "git管理している途中から.gitignoreを追加して、その設定を反映させる"
+  command = "git rm -r --cached ."
+  output = ""
+
+[[snippets]]
+  description = "全てのコンテナを強制的に削除する"
+  command = "docker rm -f $(docker ps -a -q)"
+  output = ""
+
+[[snippets]]
+  description = "GoでWindows用コンパイル"
+  command = "CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc GOOS=windows GOARCH=amd64 go build -o XXX.exe xxx.go"
+  output = ""
+
+[[snippets]]
+  description = "後から.gitignoreを反映させたい時"
+  command = "git rm -r --cached ."
+  output = ""
+
+[[snippets]]
+  description = "フォントサイズを20に"
+  command = "urxvt-font 20"
+  output = ""
+
+[[snippets]]
+  description = "フォントサイズを14に"
+  command = "urxvt-font 14"
+  output = ""
+
+[[snippets]]
+  description = "ヤフオククローラstatus確認"
+  command = "ssh vps systemctl status yahoo"
+  output = ""
+
+[[snippets]]
+  description = "VPSヤフオククローラーDB編集"
+  command = "ssh -X vps sqlitebrowser ~/.ghq/bitbucket.org/db97531/yahoo-crawler/db/db.sqlite"
+  output = ""
