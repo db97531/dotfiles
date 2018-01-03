@@ -60,6 +60,7 @@ go get github.com/motemen/ghq
 
 # pet
 go get github.com/knqyf263/pet
+mkdir -p ~/.config/pet
 
 # Docker
 # wget -qO- https://get.docker.com/ | sh
