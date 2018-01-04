@@ -38,7 +38,7 @@ sudo apt install -y vim-migemo
 
 # zshインストール
 sudo apt install -y zsh
-chsh -s /usr/bin/zsh
+# chsh -s /usr/bin/zsh
 
 # Tmux
 sudo apt install -y tmux
@@ -63,16 +63,19 @@ go get github.com/knqyf263/pet
 mkdir -p ~/.config/pet
 
 # anyenv
-git clone https://github.com/riywo/anyenv ~/.anyenv
+if [ ! -d ~/.anyenv ]; then
+    git clone https://github.com/riywo/anyenv ~/.anyenv
+fi
 
 # pyenv
 sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
 libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
 xz-utils tk-dev
 
-# anyenv-pyenv-virtualenv
-git clone https://github.com/yyuu/pyenv-virtualenv ~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv
-
+# pyenv-virtualenv
+if [ ! -d ~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv ];
+    then git clone https://github.com/yyuu/pyenv-virtualenv ~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv
+fi
 # Docker
 # wget -qO- https://get.docker.com/ | sh
 # sudo usermod -aG docker $USER
