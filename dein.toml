@@ -72,6 +72,11 @@ hook_add = '''
   endif
   let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
 
+  " Rubyの補完設定
+  let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+  let g:neocomplcache_force_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+  " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+
   inoremap <expr><C-g>     neocomplcache#undo_completion()
   inoremap <expr><C-l>     neocomplcache#complete_common_string()
   inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "<CR>"
@@ -340,3 +345,6 @@ repo = 'kana/vim-textobj-entire'
 
 [[plugins]]
 repo = 'evidens/vim-twig'
+
+[[plugins]]
+repo = 'Shougo/neocomplcache-rsense.vim'
