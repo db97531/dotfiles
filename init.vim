@@ -42,6 +42,17 @@ nnoremap <C-w>- :sp<CR>
 " w!! でスーパーユーザーとして保存（sudoが使える環境限定）
 cmap w!! w !sudo tee > /dev/null %
 
+
+" ターミナル設定
+if has('nvim')
+	" 水平分割でターミナル起動
+    nnoremap @t :sp<CR>:terminal<CR>i
+	" Ctrl + q でターミナルを終了
+	tnoremap <C-q> <C-\><C-n>:q<CR>
+	" ESCでターミナルモードからノーマルモードへ
+	tnoremap <ESC> <C-\><C-n>
+endif
+
 "#################################################################################################
 " dein settings {{{
 " dein自体の自動インストール
