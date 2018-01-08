@@ -46,70 +46,34 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/neocomplcache'
-on_i = 1
+repo = 'Shougo/deoplete.nvim'
 hook_add = '''
-  let g:acp_enableAtStartup = 0
-  let g:neocomplcache_auto_completion_start_length = 1
-  let g:neocomplcache_min_syntax_length = 1
-  let g:neocomplcache_enable_at_startup = 1
-  let g:neocomplcache_enable_smart_case = 1
-  let g:neocomplcache_enable_smart_case = 1
-  let g:neocomplcache_min_syntax_length = 1
-  let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-  let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : ''
-    \ }
-  " Golangの補完設定
-  if !exists('g:neocomplcache_omni_patterns')
-      let g:neocomplcache_omni_patterns = {}
-  endif
-  let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
+  let g:deoplete#enable_at_startup = 1
 
-  " Pythonの補完設定
-  if !exists('g:neocomplcache_force_omni_patterns')
-  let g:neocomplcache_force_omni_patterns = {}
-  endif
-  let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
+  if !exists('g:deoplete#omni_patterns') | let g:deoplete#omni_patterns = {} | endif
 
-  " Rubyの補完設定
-  let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-  let g:neocomplcache_force_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-  " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-
-  inoremap <expr><C-g>     neocomplcache#undo_completion()
-  inoremap <expr><C-l>     neocomplcache#complete_common_string()
-  inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "<CR>"
-  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-  " <C-h>, <BS>: close popup and delete backword char.
-" 下記の行を有効にするとautocloseで片方のカッコを削除しても
-" 対のカッコが削除されなくなる。
-"  inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-"  inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-"
-  inoremap <expr><C-y>  neocomplcache#close_popup()
-  inoremap <expr><C-e>  neocomplcache#cancel_popup()
-" Endwiseとの併用のための設定
-" <CR>: close popup and save indent.
-  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-  function! s:my_cr_function()
-    return neocomplcache#smart_close_popup() . "\<CR>"
-    " For no inserting <CR> key.
-    "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-  endfunction
+  let g:deoplete#omni_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+	let g:deoplete#omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 '''
 
 [[plugins]]
-repo = 'myhere/vim-nodejs-complete'
-on_i = 1
-hook_add = '''
-  autocmd FileType javascript setlocal omnifunc=nodejscomplete#CompleteJS
-  if !exists('g:neocomplcache_omni_functions')
-    let g:neocomplcache_omni_functions = {}
-  endif
-  let g:neocomplcache_omni_functions.javascript = 'nodejscomplete#CompleteJS'
-  let g:node_usejscomplete = 1
-'''
+repo = 'Rip-Rip/clang_complete'
+
+[[plugins]]
+repo = 'c9s/perlomni.vim'
+
+[[plugins]]
+repo = 'fishbullet/deoplete-ruby'
+
+[[plugins]]
+repo = 'zchee/deoplete-go'
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
 
 [[plugins]]
 repo = 'davidhalter/jedi-vim'
@@ -346,5 +310,3 @@ repo = 'kana/vim-textobj-entire'
 [[plugins]]
 repo = 'evidens/vim-twig'
 
-[[plugins]]
-repo = 'Shougo/neocomplcache-rsense.vim'
