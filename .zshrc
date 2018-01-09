@@ -67,6 +67,9 @@ setopt hist_ignore_space
 # 候補を選ぶには <Tab> か Ctrl-N,B,F,P
 zstyle ':completion:*:default' menu select=1
 
+# 補完時に大文字小文字を区別しない
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
 # 単語の一部として扱われる文字のセットを指定する
 # ここではデフォルトのセットから / を抜いたものとする
 # こうすると、 Ctrl-W でカーソル前の1単語を削除したとき、 / までで削除が止まる
@@ -86,7 +89,7 @@ chpwd() { ls -la --color=auto }
 setopt no_flow_control
 
 # promptを独自で変更
-PROMPT='%m:%F{green}%c%f %n%#'
+# PROMPT='%m:%F{green}%c%f %n%#'
 # 2行表示
 # PROMPT="%{${fg[green]}%}[%n@%m]%{${reset_color}%} %~
 # %# "
@@ -137,5 +140,25 @@ if [ -d ${HOME}/.anyenv ] ; then
    do
        export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
    done
-
 fi
+
+
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:*' formats '[%F{green}%b%f]'
+zstyle ':vcs_info:*' actionformats '[%F{green}%b%f(%F{red}%a%f)]'
+precmd() { vcs_info }
+PROMPT='%{${fg[yellow]}%}%~%{${reset_color}%}
+[%n@%m]${vcs_info_msg_0_}
+%(?.%B%F{green}.%B%F{blue})%(?!(๑˃̵ᴗ˂̵)ﻭ < !(;^ω^%) < )%f%b'
+RPROMPT=''
+
+if type pyenv > /dev/null 2>&1
+then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+# virtualenvの情報取得
+# if [ -n "$VIRTUAL_ENV" ]; then
+  # RPROMPT="%{${fg_bold[white]}%}(env: %{${fg[green]}%}`basename \"$VIRTUAL_ENV\"`%{${fg_bold[white]}%}) ${RPROMPT}"
+# fi
