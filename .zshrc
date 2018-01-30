@@ -15,7 +15,7 @@ autoload -Uz colors
 colors
 
 # 他のターミナルとヒストリーを共有
-setopt share_history
+# setopt share_history
 
 # Emacs ライクな操作を有効にする（文字入力中に Ctrl-F,B でカーソル移動など）
 # Vi ライクな操作が好みであれば `bindkey -v` とする
