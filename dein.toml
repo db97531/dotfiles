@@ -43,6 +43,7 @@ repo = 'airblade/vim-gitgutter'
 hook_add = '''
   let g:gitgutter_highlight_lines = 1
   nnoremap <silent> <Leader><ESC><ESC> :GitGutterLineHighlightsToggle<CR>
+  highlight GitGutterDeleteLine ctermfg=NONE ctermbg=238
 '''
 
 [[plugins]]
@@ -118,6 +119,7 @@ hook_add = '''
   nnoremap <Leader>ub :<C-u>Unite buffer<CR>
   nnoremap <leader>uf :<C-u>UniteWithBufferDir file file/new -buffer-name=file<CR>
   nnoremap <leader>um :<C-u>Unite file_mru buffer<CR>
+  nnoremap <leader>ut :<C-u>Unite tab<CR>
   nnoremap <leader>ur :<C-u>Unite -buffer-name=register register<CR>
   nnoremap <leader>uh :<C-u>Unite history/yank<CR>
 
@@ -325,4 +327,3 @@ repo = 'kana/vim-textobj-entire'
 
 [[plugins]]
 repo = 'evidens/vim-twig'
-
