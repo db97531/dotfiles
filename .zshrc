@@ -14,6 +14,9 @@ export LANG=ja_JP.UTF-8
 autoload -Uz colors
 colors
 
+# glob展開エラーの抑制？
+setopt nonomatch
+
 # 他のターミナルとヒストリーを共有
 # setopt share_history
 
