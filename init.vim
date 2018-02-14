@@ -79,6 +79,9 @@ endif
 " }}}
 "#################################################################################################
 
+" 曖昧幅文字を全角に固定
+set ambiwidth=double
+
 " クリップボード連携
 " set clipboard+=unnamedplus
 set clipboard=unnamedplus

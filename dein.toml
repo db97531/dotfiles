@@ -73,8 +73,10 @@ hook_add = '''
 	let g:deoplete#omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 '''
 
+# [[plugins]]
+# repo = 'Rip-Rip/clang_complete'
 [[plugins]]
-repo = 'Rip-Rip/clang_complete'
+repo = 'justmao945/vim-clang'
 
 [[plugins]]
 repo = 'c9s/perlomni.vim'
@@ -211,10 +213,10 @@ hook_add = '''
   " nmap <S-CR> <Plug>(easymotion-s2)
   let g:EasyMotion_do_mapping = 0
   nmap <Leader><CR> <Plug>(easymotion-s2)
-  map f <Plug>(easymotion-fl)
-  map t <Plug>(easymotion-tl)
-  map F <Plug>(easymotion-Fl)
-  map T <Plug>(easymotion-Tl)
+  " map f <Plug>(easymotion-fl)
+  " map t <Plug>(easymotion-tl)
+  " map F <Plug>(easymotion-Fl)
+  " map T <Plug>(easymotion-Tl)
 '''
 
 [[plugins]]
