@@ -52,6 +52,8 @@ sudo apt-get install -y golang-go
 export GOPATH="$HOME/.go"
 export PATH="$PATH:$GOPATH/bin"
 
+# Windows用コンパイラ
+sudo apt install -y mingw-w64
 # peco
 go get github.com/peco/peco/cmd/peco
 
