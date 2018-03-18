@@ -50,7 +50,8 @@ if has('nvim')
 	" Ctrl + q でターミナルを終了
 	tnoremap <C-q> <C-\><C-n>:q<CR>
 	" ESCでターミナルモードからノーマルモードへ
-	tnoremap <ESC> <C-\><C-n>
+	" tnoremap <ESC> <C-\><C-n>
+	tnoremap <Leader>q <C-\><C-n>
 endif
 
 "#################################################################################################
