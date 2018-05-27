@@ -165,3 +165,5 @@ fi
 # if [ -n "$VIRTUAL_ENV" ]; then
   # RPROMPT="%{${fg_bold[white]}%}(env: %{${fg[green]}%}`basename \"$VIRTUAL_ENV\"`%{${fg_bold[white]}%}) ${RPROMPT}"
 # fi
+
+[[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux
