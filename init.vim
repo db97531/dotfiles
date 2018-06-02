@@ -193,5 +193,8 @@ nnoremap <Leader>q :<C-u>bw! \[quickrun\ output\]<CR>
 " dein.tomlでのhook_addで設定できなかったためここで設定する
 let NERDTreeShowHidden = 1
 
+" スニペットファイル定義
+let g:neosnippet#snippets_directory='~/.config/nvim/snippets/'
+
 " Enable filetype plugins
 filetype plugin on

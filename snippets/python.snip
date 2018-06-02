@@ -1,0 +1,16 @@
+snippet     is_exists_dirctory
+abbr        ディレクトリ存在チェック
+  os.path.exists(${0:#:path})
+
+snippet     make_dirctory
+abbr        ディレクトリを作成する
+  os.mkdir(${0:#:path})
+
+snippet     measure_run_time
+abbr        実行時間を計測する
+  start = time.time()
+  elapsed_time = time.time() - start
+  print ("elapsed_time:{0}".format(elapsed_time) + "[sec]")
+
+
+
