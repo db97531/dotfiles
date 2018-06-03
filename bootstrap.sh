@@ -78,11 +78,46 @@ xz-utils tk-dev
 if [ ! -d ~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv ];
     then git clone https://github.com/yyuu/pyenv-virtualenv ~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv
 fi
+
 # Docker
-# wget -qO- https://get.docker.com/ | sh
-# sudo usermod -aG docker $USER
+sudo apt-get install -y apt-transport-https \
+                       ca-certificates
+curl -fsSL https://yum.dockerproject.org/gpg | sudo apt-key add -
+sudo add-apt-repository "deb https://apt.dockerproject.org/repo/ ubuntu-xenial main"
+sudo apt-get update -y
+sudo apt-get install -y docker-engine
 
 # Docker-compose
-# sudo -i curl -L "https://github.com/docker/compose/releases/download/1.10.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-# sudo chmod +x /usr/local/bin/docker-compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
+# 現行ユーザをdockerグループに所属させる
+sudo gpasswd -a $USER docker
+
+# jq
+sudo apt install -y jq
+
+# sqlite3
+sudo apt install -y sqlite3 libsqlite3-dev
+
+# DB browser for sql
+sudo apt install -y sqlitebrowser
+
+# Dropbox
+wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -P ~/ -
+mkdir -p ~/.local/bin
+wget -O ~/.local/bin/dropbox.py "https://www.dropbox.com/download?dl=packages/dropbox.py"
+chmod +x ~/.local/bin/dropbox.py
+ln -s -T ~/.local/bin/dropbox.py ~/.local/bin/dropbox
+
+# RictyDiminishedのインストール
+mkdir ~/.fonts
+git clone https://github.com/edihbrandon/RictyDiminished.git
+mv RictyDiminished/*.ttf ~/.fonts/
+rm -rf RictyDiminished/
+
+# Google Chromeのインストール
+sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+sudo apt update -y
+sudo apt install -y google-chrome-stable
