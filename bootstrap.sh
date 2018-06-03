@@ -122,6 +122,8 @@ sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /et
 sudo apt update -y
 sudo apt install -y google-chrome-stable
 
+chsh -s $(which zsh)
+
 bash ./setup.sh
 
 echo "setup finished!"
