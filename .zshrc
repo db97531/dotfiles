@@ -84,6 +84,7 @@ alias vim='nvim'
 alias ll='ls -la --color=auto'
 alias la='ls -a --color=auto'
 alias grep='grep --color'
+alias -g P='`docker ps | tail -n +2 | peco | cut -d" " -f1`'
 
 # cdの後にlsを実行
 chpwd() { ls -la --color=auto }
