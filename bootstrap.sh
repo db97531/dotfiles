@@ -123,4 +123,10 @@ sudo apt update -y
 sudo apt install -y google-chrome-stable
 
 bash ./setup.sh
-echo "setup finished! reboot system and do after-setup-scripts!"
+
+echo "setup finished!"
+echo "next step is .."
+echo "0:(option) uninstall Firefox"
+echo "1:execute [~/.local/bin/dropbox start -i]"
+echo "2:execute ./ssh_dropbox_link.sh"
+echo "3:reboot system and do after-setup-scripts!"
