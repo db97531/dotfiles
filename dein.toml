@@ -335,6 +335,7 @@ repo = 'evidens/vim-twig'
 
 [[plugins]]
 repo = 'ervandew/eclim'
+rtp = 'org.eclim.core/vim'
 
 [[plugins]]
 repo = 'posva/vim-vue'
