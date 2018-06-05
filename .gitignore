@@ -1,3 +1,6 @@
+# 汎用
+tags
+
 # PHP関連
 composer.phar
 /vendor/
@@ -5,3 +8,5 @@ composer.phar
 # node関連
 node_modules/
 
+# Python関連
+__pycache__/
