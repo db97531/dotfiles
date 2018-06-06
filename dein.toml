@@ -354,3 +354,18 @@ hook_add = '''
   map <C-Y> :call yapf#YAPF()<cr>
   imap <C-Y> <c-o>:call yapf#YAPF()<cr>
 '''
+
+[[plugins]]
+repo = 'maksimr/vim-jsbeautify'
+hook_add = '''
+  " for html
+  autocmd FileType html noremap <buffer> <Leader>b :call HtmlBeautify()<cr>
+  " for css or scss
+  autocmd FileType css noremap <buffer> <Leader>b :call CSSBeautify()<cr>
+'''
+
+[[plugins]]
+repo = 'cohama/agit.vim'
+hook_add = '''
+  nnoremap <silent> <Leader>gl :Agit<CR>
+'''
