@@ -42,6 +42,8 @@ nnoremap <C-w>- :sp<CR>
 " w!! でスーパーユーザーとして保存（sudoが使える環境限定）
 cmap w!! w !sudo tee > /dev/null %
 
+" Pythonインデント設定
+inoremap # X<C-H>#
 
 " ターミナル設定
 if has('nvim')
