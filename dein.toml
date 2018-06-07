@@ -297,6 +297,18 @@ repo = 'terryma/vim-expand-region'
 hook_add = '''
   vmap v <Plug>(expand_region_expand)
   vmap <C-v> <Plug>(expand_region_shrink)
+  let g:expand_region_text_objects = {
+      \ 'iw'  :0,
+      \ 'iW'  :0,
+      \ 'i"'  :0,
+      \ 'i'   :0,
+      \ 'i]'  :1,
+      \ 'ib'  :1,
+      \ 'iB'  :1,
+      \ 'il'  :0,
+      \ 'ip'  :0,
+      \ 'ie'  :0,
+      \ }
 '''
 
 [[plugins]]
@@ -334,10 +346,6 @@ repo = 'kana/vim-textobj-entire'
 repo = 'evidens/vim-twig'
 
 [[plugins]]
-repo = 'ervandew/eclim'
-rtp = 'org.eclim.core/vim'
-
-[[plugins]]
 repo = 'posva/vim-vue'
 
 [[plugins]]
@@ -369,3 +377,16 @@ repo = 'cohama/agit.vim'
 hook_add = '''
   nnoremap <silent> <Leader>gl :Agit<CR>
 '''
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+hook_add = '''
+  " Start interactive EasyAlign in visual mode (e.g. vipga)
+  xmap ga <Plug>(EasyAlign)
+  " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+  nmap ga <Plug>(EasyAlign)
+'''
+
