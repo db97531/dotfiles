@@ -157,11 +157,11 @@ PROMPT='%{${fg[yellow]}%}%~%{${reset_color}%}
 %(?.%B%F{green}.%B%F{blue})%(?!(๑˃̵ᴗ˂̵)ﻭ < !(;^ω^%) < )%f%b'
 RPROMPT=''
 
-if type pyenv > /dev/null 2>&1
-then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
+# if type pyenv > /dev/null 2>&1
+# then
+    # eval "$(pyenv init -)"
+    # eval "$(pyenv virtualenv-init -)"
+# fi
 # virtualenvの情報取得
 # if [ -n "$VIRTUAL_ENV" ]; then
   # RPROMPT="%{${fg_bold[white]}%}(env: %{${fg[green]}%}`basename \"$VIRTUAL_ENV\"`%{${fg_bold[white]}%}) ${RPROMPT}"
