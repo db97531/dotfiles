@@ -43,6 +43,9 @@ sudo apt install -y zsh
 # Tmux
 sudo apt install -y tmux
 
+# ctags
+sudo apt install -y ctags
+
 # Golang
 mkdir -p ~/.go
 sudo apt install -y software-properties-common
