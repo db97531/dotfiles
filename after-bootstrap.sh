@@ -1,5 +1,6 @@
 #!/bin/bash -e
 
+anyenv install --init
 anyenv install rbenv
 anyenv install pyenv
 anyenv install plenv

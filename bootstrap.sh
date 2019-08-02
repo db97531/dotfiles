@@ -106,13 +106,6 @@ sudo apt install -y sqlite3 libsqlite3-dev
 # DB browser for sql
 sudo apt install -y sqlitebrowser
 
-# Dropbox
-wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
-mkdir -p ~/.local/bin
-wget -O ~/.local/bin/dropbox.py "https://www.dropbox.com/download?dl=packages/dropbox.py"
-chmod +x ~/.local/bin/dropbox.py
-ln -s -T ~/.local/bin/dropbox.py ~/.local/bin/dropbox
-
 # RictyDiminishedのインストール
 mkdir ~/.fonts
 git clone https://github.com/edihbrandon/RictyDiminished.git
@@ -132,6 +125,6 @@ bash ./setup.sh
 echo "setup finished!"
 echo "next step is .."
 echo "0:(option) uninstall Firefox"
-echo "1:execute [~/.local/bin/dropbox start -i]"
-echo "2:execute ./ssh_dropbox_link.sh"
+echo "1:setup Qsync"
+echo "2:execute ./ssh_qsync.sh"
 echo "3:reboot system and do after-setup-scripts!"
