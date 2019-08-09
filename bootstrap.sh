@@ -106,6 +106,10 @@ sudo apt install -y sqlite3 libsqlite3-dev
 # DB browser for sql
 sudo apt install -y sqlitebrowser
 
+
+# vim clang-format用
+sudo apt install -y clang-format
+
 # RictyDiminishedのインストール
 mkdir ~/.fonts
 git clone https://github.com/edihbrandon/RictyDiminished.git

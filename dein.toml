@@ -422,3 +422,9 @@ repo = 'aliev/vim-compiler-python'
 [[plugins]]
 repo = 'lambdalisue/vim-django-support'
 on_ft = ['python', 'python3', 'djangohtml']
+
+[[plugins]]
+repo = 'rhysd/vim-clang-format'
+hook_add = '''
+  autocmd FileType c ClangFormatAutoEnable
+'''
