@@ -116,12 +116,6 @@ git clone https://github.com/edihbrandon/RictyDiminished.git
 mv RictyDiminished/*.ttf ~/.fonts/
 rm -rf RictyDiminished/
 
-# Google Chromeのインストール
-sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-sudo apt update -y
-sudo apt install -y google-chrome-stable
-
 chsh -s $(which zsh)
 
 bash ./setup.sh

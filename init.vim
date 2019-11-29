@@ -165,6 +165,19 @@ set scrolloff=8
 "ウィンドウサイズの自動調整を無効化
 set noequalalways
 
+let g:clipboard = {
+      \   'name': 'myClipboard',
+      \   'copy': {
+      \      '+': 'win32yank.exe -i',
+      \      '*': 'win32yank.exe -i',
+      \    },
+      \   'paste': {
+      \      '+': 'win32yank.exe -o',
+      \      '*': 'win32yank.exe -o',
+      \   },
+      \   'cache_enabled': 1,
+      \ }
+
 " http://inari.hatenablog.com/entry/2014/05/05/231307
 """"""""""""""""""""""""""""""
 " 全角スペースの表示

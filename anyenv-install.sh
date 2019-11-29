@@ -9,8 +9,8 @@ sudo apt install -y libtidy-dev
 sudo apt install -y libxslt-dev
 sudo apt install -y autoconf
 
-pyenv install 3.6.4
-pyenv global 3.6.4
+pyenv install 3.7.0
+pyenv global 3.7.0
 pyenv rehash
 
 pyenv install 2.7.14
