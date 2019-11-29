@@ -23,6 +23,10 @@ let mapleader = "\<Space>"
 " 端末のCtrl+Spaceのキーマップの上書き対策
 imap <Nul> <C-Space>
 
+" タブ移動
+nnoremap sn gt
+nnoremap sp gT
+
 " カーソルを表示行で移動する。
 nnoremap j gj
 nnoremap k gk

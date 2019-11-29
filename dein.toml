@@ -202,11 +202,20 @@ hook_add = '''
   let g:user_emmet_settings={ 'variables' : {'lang' : 'ja'}}
 '''
 
+# [[plugins]]
+# repo = 'tyru/caw.vim.git'
+# hook_add = '''
+#   " nmap <Leader>c<Leader> <Plug>(caw:hatpos:toggle)
+#   " vmap <Leader>c<Leader> <Plug>(caw:hatpos:toggle)
+# '''
+
 [[plugins]]
-repo = 'tyru/caw.vim.git'
+repo = 'tomtom/tcomment_vim'
 hook_add = '''
-  nmap <C-K> <Plug>(caw:hatpos:toggle)
-  vmap <C-K> <Plug>(caw:hatpos:toggle)
+  nmap <Leader>c<Leader> :TComment<CR>
+  vmap <Leader>c<Leader> :TComment<CR>
+  nmap <Leader>cb :TCommentBlock<CR>
+  vmap <Leader>cb :TCommentBlock<CR>
 '''
 
 [[plugins]]
@@ -390,3 +399,32 @@ hook_add = '''
   nmap ga <Plug>(EasyAlign)
 '''
 
+#[[plugins]]
+#repo = 'scrooloose/nerdcommenter'
+#hook_add = '''
+#  let g:NERDDefaultAlign = 'left'
+#'''
+
+[[plugins]]
+repo = 'tpope/vim-dispatch'
+
+[[plugins]]
+repo = 'janko-m/vim-test'
+depends = ['vim-dispatch']
+hook_add = '''
+  let g:test#strategy = 'dispatch'
+  " let g:test#strategy = 'neovim'
+'''
+
+[[plugins]]
+repo = 'aliev/vim-compiler-python'
+
+[[plugins]]
+repo = 'lambdalisue/vim-django-support'
+on_ft = ['python', 'python3', 'djangohtml']
+
+[[plugins]]
+repo = 'rhysd/vim-clang-format'
+hook_add = '''
+  autocmd FileType c ClangFormatAutoEnable
+'''

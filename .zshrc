@@ -154,7 +154,7 @@ zstyle ':vcs_info:*' actionformats '[%F{green}%b%f(%F{red}%a%f)]'
 precmd() { vcs_info }
 PROMPT='%{${fg[yellow]}%}%~%{${reset_color}%}
 [%n@%m]${vcs_info_msg_0_}
-%(?.%B%F{green}.%B%F{blue})%(?!(๑˃̵ᴗ˂̵)ﻭ < !(;^ω^%) < )%f%b'
+%(?.%B%F{green}.%B%F{blue})%(?!(^_^) > !(-_-%) > )%f%b'
 RPROMPT=''
 
 # if type pyenv > /dev/null 2>&1
