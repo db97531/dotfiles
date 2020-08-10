@@ -79,11 +79,8 @@ sudo apt install -y sqlitebrowser
 # vim clang-format用
 sudo apt install -y clang-format
 
-# RictyDiminishedのインストール
+# .fontsディレクトリ作成
 mkdir ~/.fonts
-git clone https://github.com/edihbrandon/RictyDiminished.git
-mv RictyDiminished/*.ttf ~/.fonts/
-rm -rf RictyDiminished/
 
 # Google Chromeのインストール
 sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
