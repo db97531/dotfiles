@@ -88,6 +88,16 @@ sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /et
 sudo apt update -y
 sudo apt install -y google-chrome-stable
 
+
+# ctop
+sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.3/ctop-0.7.3-linux-amd64 -O /usr/local/bin/ctop
+sudo chmod +x /usr/local/bin/ctop
+
+
+# starship
+curl -fsSL https://starship.rs/install.sh | bash
+
+# シェル変更
 chsh -s $(which zsh)
 
 bash ./setup.sh

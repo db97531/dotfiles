@@ -146,25 +146,6 @@ if [ -d ${HOME}/.anyenv ] ; then
    done
 fi
 
-
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:*' formats '[%F{green}%b%f]'
-zstyle ':vcs_info:*' actionformats '[%F{green}%b%f(%F{red}%a%f)]'
-precmd() { vcs_info }
-PROMPT='%{${fg[yellow]}%}%~%{${reset_color}%}
-[%n@%m]${vcs_info_msg_0_}
-%(?.%B%F{green}.%B%F{blue})%(?!(^_^) > !(-_-%) > )%f%b'
-RPROMPT=''
-
-# if type pyenv > /dev/null 2>&1
-# then
-    # eval "$(pyenv init -)"
-    # eval "$(pyenv virtualenv-init -)"
-# fi
-# virtualenvの情報取得
-# if [ -n "$VIRTUAL_ENV" ]; then
-  # RPROMPT="%{${fg_bold[white]}%}(env: %{${fg[green]}%}`basename \"$VIRTUAL_ENV\"`%{${fg_bold[white]}%}) ${RPROMPT}"
-# fi
+eval "$(starship init zsh)"
 
 [[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux
