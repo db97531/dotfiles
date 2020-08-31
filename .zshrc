@@ -85,6 +85,7 @@ alias ll='ls -la --color=auto'
 alias la='ls -a --color=auto'
 alias grep='grep --color'
 alias -g P='`docker ps | tail -n +2 | peco | cut -d" " -f1`'
+alias sb='sqlitebrowser'
 
 # cdの後にlsを実行
 chpwd() { ls -la --color=auto }
@@ -147,5 +148,11 @@ if [ -d ${HOME}/.anyenv ] ; then
 fi
 
 eval "$(starship init zsh)"
+
+
+# WSL2のGUI設定
+if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+    export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
+fi
 
 [[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux

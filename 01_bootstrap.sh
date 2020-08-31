@@ -100,7 +100,7 @@ curl -fsSL https://starship.rs/install.sh | bash
 # シェル変更
 chsh -s $(which zsh)
 
-bash ./setup.sh
+bash ./symlink.sh
 
 echo "setup finished!"
 echo "next step is .."
