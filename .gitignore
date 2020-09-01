@@ -10,3 +10,6 @@ node_modules/
 
 # Python関連
 __pycache__/
+
+# go関連
+go.sum
