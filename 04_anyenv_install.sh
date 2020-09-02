@@ -2,12 +2,15 @@
 
 # phpenv PHPビルド依存プログラムのインストール
 sudo apt install -y libxml2-dev
-sudo apt install -y libcurl-dev
+# sudo apt install -y libcurl-dev
 sudo apt install -y libcurl4-gnutls-dev
 sudo apt install -y libjpeg-dev
 sudo apt install -y libtidy-dev
 sudo apt install -y libxslt-dev
+sudo apt install -y libzip-dev
+sudo apt install -y libonig-dev
 sudo apt install -y autoconf
+sudo apt install -y re2c
 
 pyenv install 3.7.0
 pyenv global 3.7.0
