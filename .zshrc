@@ -86,6 +86,7 @@ alias la='ls -a --color=auto'
 alias grep='grep --color'
 alias -g P='`docker ps | tail -n +2 | peco | cut -d" " -f1`'
 alias sb='sqlitebrowser'
+alias chrome='google-chrome-stable'
 
 # cdの後にlsを実行
 chpwd() { ls -la --color=auto }
