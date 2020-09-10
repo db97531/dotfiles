@@ -49,6 +49,7 @@ go get github.com/motemen/ghq
 wget https://github.com/knqyf263/pet/releases/download/v0.3.0/pet_0.3.0_linux_amd64.deb
 sudo dpkg -i pet_0.3.0_linux_amd64.deb
 mkdir -p ~/.config/pet
+rm ./pet_0.3.0_linux_amd64.deb
 
 # anyenv
 if [ ! -d ~/.anyenv ]; then
