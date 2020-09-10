@@ -30,6 +30,6 @@ rbenv install 2.5.0
 rbenv global 2.5.0
 rbenv rehash
 
-phpenv install 7.2.6
-phpenv global 7.2.6
+phpenv install 7.4.10
+phpenv global 7.4.10
 phpenv rehash
