@@ -96,7 +96,7 @@ sudo chmod +x /usr/local/bin/ctop
 
 
 # starship
-curl -fsSL https://starship.rs/install.sh | bash -- -y
+curl -fsSL https://starship.rs/install.sh | bash -s -- -y
 
 # WSL用 win32yank セットアップ
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
