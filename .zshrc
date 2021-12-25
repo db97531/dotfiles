@@ -1,6 +1,7 @@
 
 export GOPATH="$HOME/.go"
 export PATH="$PATH:$GOPATH/bin"
+export PATH=$PATH:/usr/local/go/bin
 
 bindkey "^?" backward-delete-char
 
@@ -85,6 +86,8 @@ alias ll='ls -la --color=auto'
 alias la='ls -a --color=auto'
 alias grep='grep --color'
 alias -g P='`docker ps | tail -n +2 | peco | cut -d" " -f1`'
+alias sb='sqlitebrowser'
+alias chrome='google-chrome-stable'
 
 # cdの後にlsを実行
 chpwd() { ls -la --color=auto }
@@ -146,25 +149,12 @@ if [ -d ${HOME}/.anyenv ] ; then
    done
 fi
 
+eval "$(starship init zsh)"
 
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:*' formats '[%F{green}%b%f]'
-zstyle ':vcs_info:*' actionformats '[%F{green}%b%f(%F{red}%a%f)]'
-precmd() { vcs_info }
-PROMPT='%{${fg[yellow]}%}%~%{${reset_color}%}
-[%n@%m]${vcs_info_msg_0_}
-%(?.%B%F{green}.%B%F{blue})%(?!(^_^) > !(-_-%) > )%f%b'
-RPROMPT=''
 
-# if type pyenv > /dev/null 2>&1
-# then
-    # eval "$(pyenv init -)"
-    # eval "$(pyenv virtualenv-init -)"
-# fi
-# virtualenvの情報取得
-# if [ -n "$VIRTUAL_ENV" ]; then
-  # RPROMPT="%{${fg_bold[white]}%}(env: %{${fg[green]}%}`basename \"$VIRTUAL_ENV\"`%{${fg_bold[white]}%}) ${RPROMPT}"
-# fi
+# WSL2のGUI設定
+if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+    export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
+fi
 
 [[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux
