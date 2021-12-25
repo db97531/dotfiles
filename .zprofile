@@ -12,3 +12,5 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     cd ~
 fi
 
+
+export PATH="$HOME/.cargo/bin:$PATH"

@@ -526,3 +526,6 @@ hook_add = '''
   " Resume latest coc list.
   nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 '''
+
+[[plugins]]
+repo = "MaxMEllon/vim-jsx-pretty"
