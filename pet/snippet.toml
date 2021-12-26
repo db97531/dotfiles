@@ -62,3 +62,28 @@
   description = "python簡易サーバー起動"
   command = "python -m http.server 8000"
   output = ""
+
+[[snippets]]
+  description = "youtube-dl 最高画質で保存"
+  command = "youtube-dl -f bestvideo+bestaudio --merge-output-format mkv"
+  output = ""
+
+[[snippets]]
+  description = "youtube-dl mp3で保存"
+  command = "youtube-dl -x --audio-format mp3"
+  output = ""
+
+[[snippets]]
+  description = "youtube-dl mp4で最高画質保存"
+  command = "youtube-dl -f mp4/bestvideo+m4a/bestaudio --merge-output-format mp4"
+  output = ""
+
+[[snippets]]
+  description = "yt-dlp mp3で保存"
+  command = "yt-dlp -x --audio-format mp3"
+  output = ""
+
+[[snippets]]
+  description = "yt-dlp mp4で最高画質保存"
+  command = "yt-dlp -f mp4/bestvideo+m4a/bestaudio --merge-output-format mp4"
+  output = ""
