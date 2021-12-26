@@ -30,20 +30,25 @@ sudo apt install -y tmux
 # ctags
 sudo apt install -y ctags
 
-# Golang
+# Golang 最新バージョンをインストール
+# https://zenn.dev/tamagram/articles/fd744d10e2e680
+sudo add-apt-repository ppa:longsleep/golang-backports
+sudo apt update
+sudo apt install golang-go
+
 mkdir -p ~/.go
-sudo apt install -y software-properties-common
-sudo apt-get install -y golang-go
+# sudo apt install -y software-properties-common
+# sudo apt-get install -y golang-go
 export GOPATH="$HOME/.go"
 export PATH="$PATH:$GOPATH/bin"
+
 
 # Windows用コンパイラ
 sudo apt install -y mingw-w64
 # peco
-go get github.com/peco/peco/cmd/peco
-
+sudo apt install -y peco
 # ghq
-go get github.com/motemen/ghq
+go install github.com/x-motemen/ghq@latest
 
 # pet
 wget https://github.com/knqyf263/pet/releases/download/v0.3.0/pet_0.3.0_linux_amd64.deb
