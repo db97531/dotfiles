@@ -90,5 +90,10 @@
 
 [[snippets]]
   description = "youtube-dl チャプターごとに分割してmp3で保存"
-  command = "yt-dlp -x --audio-format mp3 --split-chapters "
+  command = "yt-dlp -x --audio-format mp3 --split-chapters"
+  output = ""
+
+[[snippets]]
+  description = "youtube-dl チャプターごとに分割してmp3で保存(template)"
+  command = "yt-dlp -x --audio-format mp3 --split-chapters -o \"chapter:%(section_number)02d %(section_title).100s.%(ext)s\""
   output = ""
