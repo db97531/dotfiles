@@ -139,18 +139,10 @@ function pet-select() {
 zle -N pet-select
 bindkey '^x^p' pet-select
 
-# anyenv
-if [ -d ${HOME}/.anyenv ] ; then
-    export PATH="$HOME/.anyenv/bin:$PATH"
-    eval "$(anyenv init -)"
-   for D in `ls $HOME/.anyenv/envs`
-   do
-       export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
-   done
-fi
+# asdfの設定
+. "$HOME/.asdf/asdf.sh"
 
 eval "$(starship init zsh)"
-
 
 # WSL2のGUI設定
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
