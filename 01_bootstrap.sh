@@ -40,32 +40,18 @@ export PATH="$PATH:$GOPATH/bin"
 # Windows用コンパイラ
 sudo apt install -y mingw-w64
 # peco
-go get github.com/peco/peco/cmd/peco
+#go get github.com/peco/peco/cmd/peco
+sudo apt install peco
 
 # ghq
-go get github.com/motemen/ghq
+#go get github.com/motemen/ghq
+go install github.com/x-motemen/ghq@latest
 
 # pet
 wget https://github.com/knqyf263/pet/releases/download/v0.3.0/pet_0.3.0_linux_amd64.deb
 sudo dpkg -i pet_0.3.0_linux_amd64.deb
 mkdir -p ~/.config/pet
 rm ./pet_0.3.0_linux_amd64.deb
-
-# anyenv
-if [ ! -d ~/.anyenv ]; then
-    git clone https://github.com/riywo/anyenv ~/.anyenv
-fi
-
-# pyenv
-sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
-libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-xz-utils tk-dev
-
-# pyenv-virtualenv
-if [ ! -d ~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv ];
-    then git clone https://github.com/yyuu/pyenv-virtualenv ~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv
-fi
-
 
 # jq
 sudo apt install -y jq
@@ -75,7 +61,6 @@ sudo apt install -y sqlite3 libsqlite3-dev
 
 # DB browser for sql
 sudo apt install -y sqlitebrowser
-
 
 # vim clang-format用
 sudo apt install -y clang-format
