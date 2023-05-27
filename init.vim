@@ -251,7 +251,7 @@ function! Coc_InstallExtensions () abort
 	CocInstall coc-yaml
 
 	" for python, extension forked from vscode-python.
-	CocInstall coc-python
+	"CocInstall coc-python
 
 	" provide default document symbol highlight and colors support.
     "CocInstall coc-highlight
