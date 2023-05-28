@@ -1,3 +1,10 @@
+
+-- Leaderをスペースに変更
+-- なぜか先頭に記述しないと適用されない？
+--vim.api.nvim_set_keymap("", "<Space>", "<Nop>", {noremap = true})
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 require "bootstrap"
 require "plugins"
 require "nvim_cmp_config"
@@ -56,8 +63,6 @@ vim.opt.pumheight = 10 -- 変換候補で一度に表示される数
 --vim.api.nvim_create_augroup('MyAutoCmd', { clear = true })
 
 
--- #Leaderをスペースに変更
-vim.g.mapleader = ' '
 
 -- Q(exモード)を無効化
 vim.api.nvim_set_keymap("n", 'Q', '<Nop>', {noremap = true})
@@ -75,6 +80,7 @@ vim.api.nvim_set_keymap("n", '<Nul>', '<C-Space>', {noremap = true})
 
 -- vim.cmd 'colorscheme badwolf'
 vim.cmd 'colorscheme iceberg'
+
 
 -- preservim/vim-indent-guidesの自動起動
 vim.g.indent_guides_enable_on_vim_startup = 1

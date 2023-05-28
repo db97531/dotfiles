@@ -19,6 +19,8 @@ require("packer").startup(function()
   use "hrsh7th/vim-vsnip"
   use "hrsh7th/cmp-nvim-lsp"
   use 'neovim/nvim-lspconfig'
+  use 'mattn/vim-goimports'
+  use 'thinca/vim-quickrun'
 
   use {
    "kana/vim-operator-replace",
@@ -34,6 +36,11 @@ vim.api.nvim_set_keymap("n", '<C-e>', ':NERDTreeToggle<CR>',{ noremap = true, si
 
 -- switchのキーコンフィグ
 vim.g.switch_mapping = "-"
+
+-- quickrunのキーコンフィグ
+vim.api.nvim_set_keymap("n", "<Leader>r", ":QuickRun<CR>", {noremap = true})
+vim.api.nvim_set_keymap("n", "<Leader>q", ":<C-u>bw! quickrun<CR>", {noremap = true})
+
 
 require("mason").setup({
     ui = {
