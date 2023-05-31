@@ -45,6 +45,7 @@ vim.opt.tabstop = 4 -- タブ文字の表示幅
 vim.opt.shiftwidth = 4 -- Vimが挿入するインデントの幅
 vim.opt.smarttab = true -- 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする
 vim.opt.list = true -- 不可視文字を表示する
+vim.opt.listchars = { tab = '>>', trail = '-', nbsp = '+' }
 vim.opt.infercase = true -- 補完時に大文字小文字を区別しない
 vim.opt.scrolloff = 8 -- 上下の表示を確保
 vim.opt.equalalways = false -- ウィンドウサイズの自動調整を無効化
@@ -77,6 +78,13 @@ vim.api.nvim_set_keymap("n", '<C-w>-', ':sp<CR>', {noremap = true})
 -- " 端末のCtrl+Spaceのキーマップの上書き対策
 -- " imap <Nul> <C-Space>
 vim.api.nvim_set_keymap("n", '<Nul>', '<C-Space>', {noremap = true})
+
+-- vimの背景を透過させる設定
+vim.cmd 'autocmd ColorScheme * highlight Normal ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight NonText ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight LineNr ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight Folded ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight EndOfBuffer ctermbg=none guibg=none'
 
 -- vim.cmd 'colorscheme badwolf'
 vim.cmd 'colorscheme iceberg'

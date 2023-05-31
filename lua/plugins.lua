@@ -5,9 +5,7 @@ require("packer").startup(function()
   use {'scrooloose/nerdtree'}
   use {'itchyny/lightline.vim'}
   use {'cocopon/iceberg.vim'}
-  use {"kana/vim-operator-user"}
   use {"AndrewRadev/switch.vim"}
-  use "preservim/vim-indent-guides"
   use {
       'williamboman/mason.nvim',
       run = ":MasonUpdate" -- :MasonUpdate updates registry contents
@@ -22,7 +20,16 @@ require("packer").startup(function()
   use 'mattn/vim-goimports'
   use 'thinca/vim-quickrun'
   use 'nvim-treesitter/nvim-treesitter'
+  use 'voldikss/vim-floaterm' --必要ないかも
+  use 'Yggdroot/indentLine'
 
+  use 'editorconfig/editorconfig-vim'
+  use 'terryma/vim-expand-region'
+  vim.api.nvim_set_keymap("v", 'v', '<Plug>(expand_region_expand)',{ noremap = true, silent = true })
+  vim.api.nvim_set_keymap("v", '<C-v>', '<Plug>(expand_region_shrink)',{ noremap = true, silent = true })
+
+
+  use {"kana/vim-operator-user"}
   use {
    "kana/vim-operator-replace",
     requires = {
@@ -30,6 +37,19 @@ require("packer").startup(function()
     },
   }
 
+  vim.keymap.set("n", "R", "<Plug>(operator-replace)")
+
+  use 'kana/vim-textobj-user'
+  use 'kana/vim-textobj-line'
+  use 'kana/vim-textobj-indent'
+  use 'kana/vim-textobj-entire'
+
+  use "echasnovski/mini.nvim"
+
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.1',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
 end)
 
 -- NERDTreeのキーコンフィグ
@@ -42,6 +62,10 @@ vim.g.switch_mapping = "-"
 vim.api.nvim_set_keymap("n", "<Leader>r", ":QuickRun<CR>", {noremap = true})
 vim.api.nvim_set_keymap("n", "<Leader>q", ":<C-u>bw! quickrun<CR>", {noremap = true})
 
+-- ペースト時に自動的に末尾に移動
+--vim.api.nvim_set_keymap("v", "y", "y`]`", {noremap = true})
+--vim.api.nvim_set_keymap("v", "p", "p`]`", {noremap = true})
+--vim.api.nvim_set_keymap("n", "p", "p`]`", {noremap = true})
 
 require("mason").setup({
     ui = {
@@ -182,3 +206,38 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+-------------------------------------------------------------
+-- telescopeの設定
+require('telescope').setup({
+  defaults = {
+    --layout_strategy = 'vertical',
+    layout_config = {
+    },
+    mappings = {
+      i = {
+        ['<esc>'] = require('telescope.actions').close,
+        --['<C-u>'] = false
+      },
+      n = {
+        ['<esc>'] = require('telescope.actions').close,
+      },
+    },
+    winblend = 20,
+    border = true,
+  },
+})
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+--vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+-------------------------------------------------------------
+--miniの設定
+
+require('mini.surround').setup()
+require('mini.pairs').setup()
+require('mini.comment').setup()
+require('mini.splitjoin').setup()
