@@ -9,10 +9,11 @@ sudo apt remove -y nano
 sudo apt-get install -y build-essential
 
 # neovimインストール
-sudo apt-get install -y software-properties-common
-sudo apt-get install -y neovim
-sudo apt-get install -y python3-dev python3-pip
-mkdir -p ~/.config/nvim
+# WSL環境だと古いバージョンがインストールされるので後で手動で入れる
+# sudo apt-get install -y software-properties-common
+# sudo apt-get install -y neovim
+# sudo apt-get install -y python3-dev python3-pip
+# mkdir -p ~/.config/nvim
 
 # neovimクリップボード連携用
 sudo apt install -y xsel
