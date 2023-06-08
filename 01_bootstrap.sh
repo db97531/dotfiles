@@ -28,7 +28,8 @@ sudo apt install -y zsh
 sudo apt install -y tmux
 
 # ctags
-sudo apt install -y ctags
+# エラーになったので削除、別スクリプトに
+#sudo apt install -y ctags
 
 # Golang
 mkdir -p ~/.go
@@ -81,7 +82,9 @@ sudo chmod +x /usr/local/bin/ctop
 
 
 # starship
-curl -fsSL https://starship.rs/install.sh | bash -s -- -y
+# 旧
+#curl -fsSL https://starship.rs/install.sh | bash -s -- -y
+curl -sS https://starship.rs/install.sh | sh
 
 # WSL用 win32yank セットアップ
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
