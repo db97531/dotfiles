@@ -13,4 +13,4 @@ cd ctags
 
 make
 
-sodo make install # may require extra privileges depending on where to install
+sudo make install # may require extra privileges depending on where to install
