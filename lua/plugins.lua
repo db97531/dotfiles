@@ -5,7 +5,7 @@ require("packer").startup(function()
   use {'scrooloose/nerdtree'}
   use {'itchyny/lightline.vim'}
   use {'cocopon/iceberg.vim'}
-  use {"AndrewRadev/switch.vim"}
+  --use {"AndrewRadev/switch.vim"}
   use {
       'williamboman/mason.nvim',
       run = ":MasonUpdate" -- :MasonUpdate updates registry contents
@@ -19,8 +19,14 @@ require("packer").startup(function()
   use 'neovim/nvim-lspconfig'
   use 'mattn/vim-goimports'
   use 'thinca/vim-quickrun'
-  use 'nvim-treesitter/nvim-treesitter'
-  use 'voldikss/vim-floaterm' --必要ないかも
+  use {
+      'nvim-treesitter/nvim-treesitter',
+      run = function()
+          local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+          ts_update()
+      end,
+  }
+  --use 'voldikss/vim-floaterm' --必要ないかも
   use 'Yggdroot/indentLine'
 
   use 'editorconfig/editorconfig-vim'
@@ -47,7 +53,7 @@ require("packer").startup(function()
   use "echasnovski/mini.nvim"
 
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.1',
+    'nvim-telescope/telescope.nvim', tag = '0.1.5',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 end)
@@ -56,7 +62,7 @@ end)
 vim.api.nvim_set_keymap("n", '<C-e>', ':NERDTreeToggle<CR>',{ noremap = true, silent = true })
 
 -- switchのキーコンフィグ
-vim.g.switch_mapping = "-"
+--vim.g.switch_mapping = "-"
 
 -- quickrunのキーコンフィグ
 vim.api.nvim_set_keymap("n", "<Leader>r", ":QuickRun<CR>", {noremap = true})

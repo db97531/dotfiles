@@ -24,7 +24,6 @@ vim.opt.fileencoding = "utf-8"
 vim.opt.swapfile = false -- スワップファイルを作らない
 vim.opt.smartcase = true --検索パターンに大文字を含むときだけ大文字・小文字を区別して検索
 vim.opt.cmdheight = 2
-vim.opt.ambiwidth = "double" -- 曖昧幅文字を全角に固定
 vim.opt.laststatus = 2 -- lightline用の設定
 vim.opt.hlsearch = true -- 検索結果をハイライト
 vim.opt.ignorecase = true -- 大文字小文字を無視
@@ -50,6 +49,8 @@ vim.opt.infercase = true -- 補完時に大文字小文字を区別しない
 vim.opt.scrolloff = 8 -- 上下の表示を確保
 vim.opt.equalalways = false -- ウィンドウサイズの自動調整を無効化
 vim.opt.pumheight = 10 -- 変換候補で一度に表示される数
+--vim.opt.ambiwidth = "double" -- 曖昧幅文字を全角に固定
+vim.opt.ambiwidth = "single" -- 上記のように"double"だとTelescopeの表示が崩れる
 
 
 
@@ -88,6 +89,7 @@ vim.cmd 'autocmd ColorScheme * highlight EndOfBuffer ctermbg=none guibg=none'
 
 -- vim.cmd 'colorscheme badwolf'
 vim.cmd 'colorscheme iceberg'
+--vim.cmd 'colorscheme gruvbox-material'
 
 
 -- preservim/vim-indent-guidesの自動起動
