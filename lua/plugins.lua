@@ -5,6 +5,7 @@ require("packer").startup(function()
   use {'scrooloose/nerdtree'}
   use {'itchyny/lightline.vim'}
   use {'cocopon/iceberg.vim'}
+  use {'EdenEast/nightfox.nvim'}
   --use {"AndrewRadev/switch.vim"}
   use {
       'williamboman/mason.nvim',

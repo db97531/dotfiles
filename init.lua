@@ -88,7 +88,8 @@ vim.cmd 'autocmd ColorScheme * highlight Folded ctermbg=none guibg=none'
 vim.cmd 'autocmd ColorScheme * highlight EndOfBuffer ctermbg=none guibg=none'
 
 -- vim.cmd 'colorscheme badwolf'
-vim.cmd 'colorscheme iceberg'
+--vim.cmd 'colorscheme iceberg'
+vim.cmd 'colorscheme nightfox'
 --vim.cmd 'colorscheme gruvbox-material'
 
 
