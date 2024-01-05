@@ -1,15 +1,28 @@
 vim.cmd [[packadd packer.nvim]]
 
-require("packer").startup(function()
+require("packer").startup(function(use)
   use { "wbthomason/packer.nvim" }
   use {'scrooloose/nerdtree'}
-  use {'itchyny/lightline.vim'}
+  --use {'itchyny/lightline.vim'}
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  }
   use {'cocopon/iceberg.vim'}
   use {'EdenEast/nightfox.nvim'}
   --use {"AndrewRadev/switch.vim"}
   use {
       'williamboman/mason.nvim',
       run = ":MasonUpdate" -- :MasonUpdate updates registry contents
+  }
+
+  -- コメントアウトプラグイン
+  -- gccで現在行をコメントアウト
+  use {
+      'numToStr/Comment.nvim',
+      config = function()
+          require('Comment').setup()
+      end
   }
 
   use 'williamboman/mason-lspconfig.nvim'
@@ -84,6 +97,27 @@ require("mason").setup({
     }
 })
 require('mason-lspconfig').setup_handlers({ function(server)
+
+   local handlers = {
+       -- The first entry (without a key) will be the default handler
+       -- and will be called for each installed server that doesn't have
+       -- a dedicated handler.
+       ["lua_ls"] = function ()
+           local lspconfig = require("lspconfig")
+           lspconfig.lua_ls.setup {
+               settings = {
+                   Lua = {
+                       diagnostics = {
+                           globals = { "vim" }
+                       }
+                   }
+               }
+           }
+       end,
+   }
+
+   -- alt 1. Either pass handlers when setting up mason-lspconfig:
+   require("mason-lspconfig").setup({ handlers = handlers })
   local opt = {
     -- -- Function executed when the LSP server startup
     -- on_attach = function(client, bufnr)
@@ -97,6 +131,7 @@ require('mason-lspconfig').setup_handlers({ function(server)
   }
   require('lspconfig')[server].setup(opt)
 end })
+
 
 -- 設定の参考
 -- Neovim+LSPをなるべく簡単な設定で構築する
@@ -251,3 +286,46 @@ require('mini.splitjoin').setup()
 ------------------------------------------------------------
 --NERDTreeの設定
 vim.g.NERDTreeShowHidden = 1
+------------------------------------------------------------
+--lualineの設定
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
+}
+------------------------------------------------------------
