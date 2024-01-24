@@ -8,6 +8,8 @@ sudo apt remove -y nano
 # vimprocのmakeに必要
 sudo apt-get install -y build-essential
 
+sudo apt install -y curl
+
 # neovimインストール
 # 下記のやり方ではWSL環境だと古いバージョンがインストールされるのでappimageを使う
 #   sudo apt-get install -y software-properties-common
@@ -48,7 +50,7 @@ export PATH="$PATH:$GOPATH/bin"
 sudo apt install -y mingw-w64
 # peco
 #go get github.com/peco/peco/cmd/peco
-sudo apt install peco
+sudo apt install -y peco
 
 # ghq
 #go get github.com/motemen/ghq
