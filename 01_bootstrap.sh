@@ -21,6 +21,7 @@ chmod u+x nvim.appimage
 ./nvim.appimage --appimage-extract
 sudo mv squashfs-root /
 sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+mkdir -p ~/.config/nvim/
 
 # neovimクリップボード連携用
 sudo apt install -y xsel
