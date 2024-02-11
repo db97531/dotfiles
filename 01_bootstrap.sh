@@ -100,6 +100,15 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     source ./win32yank.sh
 fi
 
+# ripgrep
+sudo apt install -y ripgrep
+
+# fd
+sudo apt install -y fd-find
+
+# cmake(telescope-fzf-native.nvimのインストールに必要)
+sudo apt install -y cmake
+
 # シェル変更
 chsh -s $(which zsh)
 

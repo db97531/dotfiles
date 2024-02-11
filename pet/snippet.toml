@@ -89,6 +89,11 @@
   output = ""
 
 [[snippets]]
+  description = "yt-dlp mp4で最高画質保存(Dドライブ)"
+  command = "yt-dlp -o \"/mnt/d/%(title)s.%(ext)s\" -f mp4/bestvideo+m4a/bestaudio --merge-output-format mp4"
+  output = ""
+
+[[snippets]]
   description = "youtube-dl チャプターごとに分割してmp3で保存"
   command = "yt-dlp -x --audio-format mp3 --split-chapters"
   output = ""
