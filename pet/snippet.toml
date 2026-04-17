@@ -1,4 +1,13 @@
 [[snippets]]
+  description = "Docker起動"
+  command = "sudo service docker start"
+  output = ""
+
+[[snippets]]
+  description = "クローラdbバックアップ(/mnt/d)"
+  command = "scp crawler:/home/db97531/work/furima-watch/django/django_rest_framework/src/db.sqlite3 /mnt/d/クローラーバックアップ/db.`date +%Y-%m-%d`.sqlite3"
+  output = ""
+[[snippets]]
   description = "yahoo-crawler ignore_sellers.txt をリモート更新"
   command = "scp /home/db97531/.ghq/bitbucket.org/db97531/yahoo-crawler/ignore_sellers.txt vps:/home/db97531/.ghq/bitbucket.org/db97531/yahoo-crawler/"
   output = ""
@@ -64,26 +73,50 @@
   output = ""
 
 [[snippets]]
-  description = "youtube-dl 最高画質で保存"
-  command = "youtube-dl -f bestvideo+bestaudio --merge-output-format mkv"
+  description = "yt-dlp mp3で保存(Dドライブ)"
+  command = "yt-dlp -o \"/mnt/d/_mydata/_yt-dlp/%(title)s.%(ext)s\" -x --audio-format mp3"
   output = ""
 
 [[snippets]]
-  description = "youtube-dl mp3で保存"
-  command = "youtube-dl -x --audio-format mp3"
+  description = "yt-dlp mp4で保存(Dドライブ)"
+  #command = "yt-dlp -o \"/mnt/d/_mydata/_yt-dlp/%(title)s.%(ext)s\" -f mp4/bestvideo+m4a/bestaudio --merge-output-format mp4"
+  command = "yt-dlp -o \"/mnt/d/_mydata/_yt-dlp/%(title)s.%(ext)s\""
   output = ""
 
 [[snippets]]
-  description = "youtube-dl mp4で最高画質保存"
-  command = "youtube-dl -f mp4/bestvideo+m4a/bestaudio --merge-output-format mp4"
+  description = "yt-dlp mp4で低画質保存(Dドライブ)"
+  #command = "yt-dlp -o \"/mnt/d/_mydata/_yt-dlp/%(title)s.%(ext)s\" -f mp4/bestvideo+m4a/bestaudio --merge-output-format mp4"
+  command = "yt-dlp -o \"/mnt/d/_mydata/_yt-dlp/%(title)s[%(id)s].%(ext)s\" -f 'bestvideo[ext=mp4][height<=480]+bestaudio[ext=m4a]/best[ext=mp4][height<=480]'"
   output = ""
 
 [[snippets]]
-  description = "yt-dlp mp3で保存"
-  command = "yt-dlp -x --audio-format mp3"
+  description = "yt-dlp mp4で中画質保存(Dドライブ)"
+  #command = "yt-dlp -o \"/mnt/d/_mydata/_yt-dlp/%(title)s.%(ext)s\" -f mp4/bestvideo+m4a/bestaudio --merge-output-format mp4"
+  command = "yt-dlp -o \"/mnt/d/_mydata/_yt-dlp/%(title)s[%(id)s].%(ext)s\" -f 'bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/best[ext=mp4][height<=720]'"
   output = ""
 
 [[snippets]]
-  description = "yt-dlp mp4で最高画質保存"
-  command = "yt-dlp -f mp4/bestvideo+m4a/bestaudio --merge-output-format mp4"
+  description = "yt-dlp mp4で最高画質保存(Dドライブ)"
+  #command = "yt-dlp -o \"/mnt/d/_mydata/_yt-dlp/%(title)s.%(ext)s\" -f mp4/bestvideo+m4a/bestaudio --merge-output-format mp4"
+  command = "yt-dlp -o \"/mnt/d/_mydata/_yt-dlp/%(title)s[%(id)s].%(ext)s\" -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]'"
+  output = ""
+
+[[snippets]]
+  description = "youtube-dl チャプターごとに分割してmp3で保存"
+  command = "yt-dlp -x --audio-format mp3 --split-chapters"
+  output = ""
+
+[[snippets]]
+  description = "youtube-dl チャプターごとに分割してmp3で保存(template)"
+  command = "yt-dlp -x --audio-format mp3 --split-chapters -o \"chapter:%(section_number)02d %(section_title).100s.%(ext)s\""
+  output = ""
+
+[[snippets]]
+  description = "WSL docker service 起動"
+  command = "sudo service docker start"
+  output = ""
+
+[[snippets]]
+  description = "クローラdbバックアップ(/mnt/d)"
+  command = "scp crawler:/home/db97531/work/furima-watch/django/django_rest_framework/src/db.sqlite3 /mnt/d/クローラーバックアップ/db.`date +%Y-%m-%d`.sqlite3"
   output = ""

@@ -1,6 +1,7 @@
 
 export GOPATH="$HOME/.go"
 export PATH="$PATH:$GOPATH/bin"
+export PATH=$PATH:/usr/local/go/bin
 
 bindkey "^?" backward-delete-char
 
@@ -87,6 +88,16 @@ alias grep='grep --color'
 alias -g P='`docker ps | tail -n +2 | peco | cut -d" " -f1`'
 alias sb='sqlitebrowser'
 alias chrome='google-chrome-stable'
+alias fd='fdfind'
+
+# Docker Composeの基本エイリアス
+alias dc='docker compose'
+
+# 頻繁に使うコマンド
+alias dcu='docker compose up -d'
+alias dcub='docker compose up -d --build'
+alias dcd='docker compose down'
+alias dcr='docker compose restart'
 
 # cdの後にlsを実行
 chpwd() { ls -la --color=auto }
@@ -138,22 +149,14 @@ function pet-select() {
 zle -N pet-select
 bindkey '^x^p' pet-select
 
-# anyenv
-if [ -d ${HOME}/.anyenv ] ; then
-    export PATH="$HOME/.anyenv/bin:$PATH"
-    eval "$(anyenv init -)"
-   for D in `ls $HOME/.anyenv/envs`
-   do
-       export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
-   done
-fi
+# asdfの設定
+. "$HOME/.asdf/asdf.sh"
 
 eval "$(starship init zsh)"
 
+# WSL2(windows10)のGUI設定
+#if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+#    export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
+#fi
 
-# WSL2のGUI設定
-if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
-    export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
-fi
-
-[[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux
+[[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux -2

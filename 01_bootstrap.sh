@@ -8,11 +8,20 @@ sudo apt remove -y nano
 # vimprocのmakeに必要
 sudo apt-get install -y build-essential
 
+sudo apt install -y curl
+
 # neovimインストール
-sudo apt-get install -y software-properties-common
-sudo apt-get install -y neovim
-sudo apt-get install -y python3-dev python3-pip
-mkdir -p ~/.config/nvim
+# 下記のやり方ではWSL環境だと古いバージョンがインストールされるのでappimageを使う
+#   sudo apt-get install -y software-properties-common
+#   sudo apt-get install -y neovim
+#   sudo apt-get install -y python3-dev python3-pip
+#   mkdir -p ~/.config/nvim
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod u+x nvim.appimage
+./nvim.appimage --appimage-extract
+sudo mv squashfs-root /
+sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+mkdir -p ~/.config/nvim/
 
 # neovimクリップボード連携用
 sudo apt install -y xsel
@@ -28,7 +37,8 @@ sudo apt install -y zsh
 sudo apt install -y tmux
 
 # ctags
-sudo apt install -y ctags
+# エラーになったので削除、別スクリプトに
+#sudo apt install -y ctags
 
 # Golang 最新バージョンをインストール
 # https://zenn.dev/tamagram/articles/fd744d10e2e680
@@ -46,8 +56,11 @@ export PATH="$PATH:$GOPATH/bin"
 # Windows用コンパイラ
 sudo apt install -y mingw-w64
 # peco
+#go get github.com/peco/peco/cmd/peco
 sudo apt install -y peco
+
 # ghq
+#go get github.com/motemen/ghq
 go install github.com/x-motemen/ghq@latest
 
 # pet
@@ -55,22 +68,6 @@ wget https://github.com/knqyf263/pet/releases/download/v0.3.0/pet_0.3.0_linux_am
 sudo dpkg -i pet_0.3.0_linux_amd64.deb
 mkdir -p ~/.config/pet
 rm ./pet_0.3.0_linux_amd64.deb
-
-# anyenv
-if [ ! -d ~/.anyenv ]; then
-    git clone https://github.com/riywo/anyenv ~/.anyenv
-fi
-
-# pyenv
-sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
-libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-xz-utils tk-dev
-
-# pyenv-virtualenv
-if [ ! -d ~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv ];
-    then git clone https://github.com/yyuu/pyenv-virtualenv ~/.anyenv/envs/pyenv/plugins/pyenv-virtualenv
-fi
-
 
 # jq
 sudo apt install -y jq
@@ -80,7 +77,6 @@ sudo apt install -y sqlite3 libsqlite3-dev
 
 # DB browser for sql
 sudo apt install -y sqlitebrowser
-
 
 # vim clang-format用
 sudo apt install -y clang-format
@@ -101,12 +97,23 @@ sudo chmod +x /usr/local/bin/ctop
 
 
 # starship
-curl -fsSL https://starship.rs/install.sh | bash -s -- -y
+# 旧
+#curl -fsSL https://starship.rs/install.sh | bash -s -- -y
+curl -sS https://starship.rs/install.sh | sh
 
 # WSL用 win32yank セットアップ
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     source ./win32yank.sh
 fi
+
+# ripgrep
+sudo apt install -y ripgrep
+
+# fd
+sudo apt install -y fd-find
+
+# cmake(telescope-fzf-native.nvimのインストールに必要)
+sudo apt install -y cmake
 
 # シェル変更
 chsh -s $(which zsh)
