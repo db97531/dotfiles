@@ -11,7 +11,10 @@ local ensure_packer = function()
 end
 
 local packer_bootstrap = ensure_packer()
-local plugins_empty = vim.fn.empty(vim.fn.glob(vim.fn.stdpath('data')..'/site/pack/packer/start/*')) > 0
+-- packer.nvim以外のプラグインが存在しない場合をtrueとする
+local plugin_dirs = vim.fn.glob(vim.fn.stdpath('data')..'/site/pack/packer/start/*', false, true)
+local non_packer = vim.tbl_filter(function(p) return not p:match('packer.nvim$') end, plugin_dirs)
+local plugins_empty = #non_packer == 0
 
 require("packer").startup(function(use)
   use { "wbthomason/packer.nvim" }
