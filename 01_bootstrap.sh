@@ -125,6 +125,21 @@ if ! has_cmd starship; then
     curl -sS https://starship.rs/install.sh | sh
 fi
 
+# tree-sitter CLI（nvim-treesitterのパーサーコンパイルに必要）
+if ! has_cmd tree-sitter; then
+    mkdir -p ~/.local/bin
+    # glibc 2.38以降はv0.26.x、それ未満はv0.25.xを使用
+    GLIBC_VER=$(ldd --version 2>&1 | grep -oP '\d+\.\d+' | head -1)
+    GLIBC_MINOR=$(echo "$GLIBC_VER" | cut -d. -f2)
+    if [ "${GLIBC_MINOR}" -ge 38 ] 2>/dev/null; then
+        TS_VER="0.26.8"
+    else
+        TS_VER="0.25.10"
+    fi
+    curl -sL "https://github.com/tree-sitter/tree-sitter/releases/download/v${TS_VER}/tree-sitter-linux-x64.gz" | gunzip > ~/.local/bin/tree-sitter
+    chmod +x ~/.local/bin/tree-sitter
+fi
+
 # WSL用 win32yank セットアップ（クリップボード連携）
 if is_wsl; then
     source ./win32yank.sh
