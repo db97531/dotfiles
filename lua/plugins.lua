@@ -11,15 +11,15 @@ local ensure_packer = function()
 end
 
 local packer_bootstrap = ensure_packer()
--- packer.nvim以外のプラグインが存在しない場合をtrueとする
-local plugin_dirs = vim.fn.glob(vim.fn.stdpath('data')..'/site/pack/packer/start/*', false, true)
-local plugins_empty = true
-for _, p in ipairs(plugin_dirs) do
-  if not p:match('packer%.nvim$') then
-    plugins_empty = false
-    break
-  end
+
+-- 必須プラグインがすべてインストール済みかチェック
+local function plugin_installed(name)
+  return vim.fn.empty(vim.fn.glob(vim.fn.stdpath('data')..'/site/pack/packer/start/'..name)) == 0
 end
+local plugins_ready = plugin_installed('mason.nvim')
+  and plugin_installed('nvim-cmp')
+  and plugin_installed('mason-lspconfig.nvim')
+  and plugin_installed('nvim-lspconfig')
 
 require("packer").startup(function(use)
   use { "wbthomason/packer.nvim" }
@@ -108,7 +108,7 @@ require("packer").startup(function(use)
   use {'thinca/vim-qfreplace'}
 
   -- 初回クローン時、またはプラグインが未インストールの場合は自動でPackerSync
-  if packer_bootstrap or plugins_empty then
+  if packer_bootstrap or not plugins_ready then
     require('packer').sync()
   end
 end)
@@ -129,7 +129,7 @@ vim.api.nvim_set_keymap("n", "<Leader>q", ":<C-u>bw! quickrun<CR>", {noremap = t
 --vim.api.nvim_set_keymap("n", "p", "p`]`", {noremap = true})
 
 -- プラグインがインストールされていない初回はプラグイン設定をスキップ
-if packer_bootstrap or plugins_empty then return end
+if packer_bootstrap or not plugins_ready then return end
 
 require("mason").setup({
     ui = {
