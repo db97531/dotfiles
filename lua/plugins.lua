@@ -20,6 +20,7 @@ local plugins_ready = plugin_installed('mason.nvim')
   and plugin_installed('nvim-cmp')
   and plugin_installed('mason-lspconfig.nvim')
   and plugin_installed('nvim-lspconfig')
+  and plugin_installed('nvim-treesitter')
 
 require("packer").startup(function(use)
   use { "wbthomason/packer.nvim" }
@@ -183,10 +184,8 @@ vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
 vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>') -- フロートメニューを開く
 vim.keymap.set('n', 'g]', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 vim.keymap.set('n', 'g[', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
--- LSP handlers
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false }
-)
+-- LSP diagnostics設定（vim.lsp.withの代替）
+vim.diagnostic.config({ virtual_text = false })
 -- Reference highlight
 vim.cmd [[
 set updatetime=500
