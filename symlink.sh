@@ -1,5 +1,8 @@
 #!/bin/bash -e
 
+mkdir -p ~/.config/nvim
+mkdir -p ~/.config/pet
+
 #ln -sf ~/dotfiles/init.vim ~/.config/nvim/init.vim
 ln -sf ~/dotfiles/init.lua ~/.config/nvim/init.lua
 ln -sf ~/dotfiles/lua/ ~/.config/nvim/lua

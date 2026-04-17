@@ -5,8 +5,13 @@ export LANG=C
 # 環境判定
 is_wsl() { grep -qEi "(Microsoft|WSL)" /proc/version 2>/dev/null; }
 
+# コマンドが存在するか確認
+has_cmd() { command -v "$1" &>/dev/null; }
+
 # nanoアンインストール
-sudo apt remove -y nano
+if has_cmd nano; then
+    sudo apt remove -y nano
+fi
 
 # vimprocのmakeに必要
 sudo apt-get install -y build-essential
@@ -16,12 +21,14 @@ sudo apt install -y curl
 # neovimインストール
 # tarball を ~/.local 配下に展開し PATH を通す方式（sudo 不要、バージョン管理が容易）
 # https://github.com/neovim/neovim/blob/master/INSTALL.md
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-tar -xzf nvim-linux-x86_64.tar.gz -C /tmp/
-mkdir -p ~/.local/opt
-rm -rf ~/.local/opt/nvim
-mv /tmp/nvim-linux-x86_64 ~/.local/opt/nvim
-rm nvim-linux-x86_64.tar.gz
+if [ ! -f ~/.local/opt/nvim/bin/nvim ]; then
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+    tar -xzf nvim-linux-x86_64.tar.gz -C /tmp/
+    mkdir -p ~/.local/opt
+    rm -rf ~/.local/opt/nvim
+    mv /tmp/nvim-linux-x86_64 ~/.local/opt/nvim
+    rm nvim-linux-x86_64.tar.gz
+fi
 mkdir -p ~/.local/bin
 ln -sf ~/.local/opt/nvim/bin/nvim ~/.local/bin/nvim
 mkdir -p ~/.config/nvim/
@@ -48,9 +55,11 @@ sudo apt install -y tmux
 
 # Golang 最新バージョンをインストール
 # https://zenn.dev/tamagram/articles/fd744d10e2e680
-sudo add-apt-repository ppa:longsleep/golang-backports
-sudo apt update
-sudo apt install golang-go
+if ! has_cmd go; then
+    sudo add-apt-repository ppa:longsleep/golang-backports
+    sudo apt update
+    sudo apt install golang-go
+fi
 
 mkdir -p ~/.go
 export GOPATH="$HOME/.go"
@@ -65,13 +74,17 @@ if is_wsl; then
 fi
 
 # ghq
-go install github.com/x-motemen/ghq@latest
+if ! has_cmd ghq; then
+    go install github.com/x-motemen/ghq@latest
+fi
 
 # pet
-wget https://github.com/knqyf263/pet/releases/download/v0.3.0/pet_0.3.0_linux_amd64.deb
-sudo dpkg -i pet_0.3.0_linux_amd64.deb
+if ! has_cmd pet; then
+    wget https://github.com/knqyf263/pet/releases/download/v0.3.0/pet_0.3.0_linux_amd64.deb
+    sudo dpkg -i pet_0.3.0_linux_amd64.deb
+    rm ./pet_0.3.0_linux_amd64.deb
+fi
 mkdir -p ~/.config/pet
-rm ./pet_0.3.0_linux_amd64.deb
 
 # jq
 sudo apt install -y jq
@@ -91,7 +104,7 @@ sudo apt install -y clang-format
 mkdir -p ~/.fonts
 
 # Google Chrome（WSL2のみ：VPSはヘッドレスのため不要）
-if is_wsl; then
+if is_wsl && ! has_cmd google-chrome-stable; then
     sudo install -m 0755 -d /etc/apt/keyrings
     curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo tee /etc/apt/keyrings/google-chrome.asc > /dev/null
     sudo chmod a+r /etc/apt/keyrings/google-chrome.asc
@@ -102,11 +115,15 @@ if is_wsl; then
 fi
 
 # ctop
-sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.3/ctop-0.7.3-linux-amd64 -O /usr/local/bin/ctop
-sudo chmod +x /usr/local/bin/ctop
+if [ ! -f /usr/local/bin/ctop ]; then
+    sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.3/ctop-0.7.3-linux-amd64 -O /usr/local/bin/ctop
+    sudo chmod +x /usr/local/bin/ctop
+fi
 
 # starship
-curl -sS https://starship.rs/install.sh | sh
+if ! has_cmd starship; then
+    curl -sS https://starship.rs/install.sh | sh
+fi
 
 # WSL用 win32yank セットアップ（クリップボード連携）
 if is_wsl; then
@@ -123,7 +140,9 @@ sudo apt install -y fd-find
 sudo apt install -y cmake
 
 # シェル変更
-chsh -s $(which zsh)
+if [ "$SHELL" != "$(which zsh)" ]; then
+    chsh -s $(which zsh)
+fi
 
 bash ./symlink.sh
 

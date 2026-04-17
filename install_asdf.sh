@@ -1,9 +1,13 @@
+#!/bin/bash -e
 
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.1
-
+# asdf
+if [ ! -d ~/.asdf ]; then
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.1
+fi
 
 # python必須ライブラリ
-sudo apt update; sudo apt install -y build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+sudo apt update
+sudo apt install -y build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
 # (1) plugin のインストール
 #asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
@@ -13,4 +17,3 @@ sudo apt update; sudo apt install -y build-essential libssl-dev zlib1g-dev libbz
 #asdf local nodejs latest
 # (4) `.tool-versions` に記載されているソフトウェアのインストール
 #asdf install
-
