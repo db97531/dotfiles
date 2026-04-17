@@ -2,6 +2,9 @@
 
 export LANG=C
 
+# 環境判定
+is_wsl() { grep -qEi "(Microsoft|WSL)" /proc/version 2>/dev/null; }
+
 # nanoアンインストール
 sudo apt remove -y nano
 
@@ -11,27 +14,30 @@ sudo apt-get install -y build-essential
 sudo apt install -y curl
 
 # neovimインストール
-# 下記のやり方ではWSL環境だと古いバージョンがインストールされるのでappimageを使う
-#   sudo apt-get install -y software-properties-common
-#   sudo apt-get install -y neovim
-#   sudo apt-get install -y python3-dev python3-pip
-#   mkdir -p ~/.config/nvim
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-chmod u+x nvim.appimage
-./nvim.appimage --appimage-extract
-sudo mv squashfs-root /
-sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+# tarball を ~/.local 配下に展開し PATH を通す方式（sudo 不要、バージョン管理が容易）
+# https://github.com/neovim/neovim/blob/master/INSTALL.md
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+tar -xzf nvim-linux-x86_64.tar.gz -C /tmp/
+mkdir -p ~/.local/opt
+rm -rf ~/.local/opt/nvim
+mv /tmp/nvim-linux-x86_64 ~/.local/opt/nvim
+rm nvim-linux-x86_64.tar.gz
+mkdir -p ~/.local/bin
+ln -sf ~/.local/opt/nvim/bin/nvim ~/.local/bin/nvim
 mkdir -p ~/.config/nvim/
 
 # neovimクリップボード連携用
-sudo apt install -y xsel
+# WSL2: win32yank を使うため xsel は不要
+# VPS : xsel を使用
+if ! is_wsl; then
+    sudo apt install -y xsel
+fi
 
 # easy-motion日本語対応用
 sudo apt install -y vim-migemo
 
 # zshインストール
 sudo apt install -y zsh
-# chsh -s /usr/bin/zsh
 
 # Tmux
 sudo apt install -y tmux
@@ -47,20 +53,18 @@ sudo apt update
 sudo apt install golang-go
 
 mkdir -p ~/.go
-# sudo apt install -y software-properties-common
-# sudo apt-get install -y golang-go
 export GOPATH="$HOME/.go"
 export PATH="$PATH:$GOPATH/bin"
 
-
-# Windows用コンパイラ
-sudo apt install -y mingw-w64
 # peco
-#go get github.com/peco/peco/cmd/peco
 sudo apt install -y peco
 
+# Windows用クロスコンパイラ（WSL2のみ）
+if is_wsl; then
+    sudo apt install -y mingw-w64
+fi
+
 # ghq
-#go get github.com/motemen/ghq
 go install github.com/x-motemen/ghq@latest
 
 # pet
@@ -75,34 +79,37 @@ sudo apt install -y jq
 # sqlite3
 sudo apt install -y sqlite3 libsqlite3-dev
 
-# DB browser for sql
-sudo apt install -y sqlitebrowser
+# DB browser for sqlite（WSL2のみ：VPSはヘッドレスのため不要）
+if is_wsl; then
+    sudo apt install -y sqlitebrowser
+fi
 
 # vim clang-format用
 sudo apt install -y clang-format
 
 # .fontsディレクトリ作成
-mkdir ~/.fonts
+mkdir -p ~/.fonts
 
-# Google Chromeのインストール
-sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-sudo apt update -y
-sudo apt install -y google-chrome-stable
-
+# Google Chrome（WSL2のみ：VPSはヘッドレスのため不要）
+if is_wsl; then
+    sudo install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo tee /etc/apt/keyrings/google-chrome.asc > /dev/null
+    sudo chmod a+r /etc/apt/keyrings/google-chrome.asc
+    echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.asc] http://dl.google.com/linux/chrome/deb/ stable main" | \
+        sudo tee /etc/apt/sources.list.d/google-chrome.list > /dev/null
+    sudo apt update -y
+    sudo apt install -y google-chrome-stable
+fi
 
 # ctop
 sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.3/ctop-0.7.3-linux-amd64 -O /usr/local/bin/ctop
 sudo chmod +x /usr/local/bin/ctop
 
-
 # starship
-# 旧
-#curl -fsSL https://starship.rs/install.sh | bash -s -- -y
 curl -sS https://starship.rs/install.sh | sh
 
-# WSL用 win32yank セットアップ
-if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+# WSL用 win32yank セットアップ（クリップボード連携）
+if is_wsl; then
     source ./win32yank.sh
 fi
 
@@ -112,7 +119,7 @@ sudo apt install -y ripgrep
 # fd
 sudo apt install -y fd-find
 
-# cmake(telescope-fzf-native.nvimのインストールに必要)
+# cmake（telescope-fzf-native.nvimのインストールに必要）
 sudo apt install -y cmake
 
 # シェル変更
@@ -121,8 +128,10 @@ chsh -s $(which zsh)
 bash ./symlink.sh
 
 echo "setup finished!"
-echo "next step is .."
-echo "0:(option) uninstall Firefox"
-echo "1:setup Qsync"
-echo "2:execute ./ssh_qsync.sh"
-echo "3:reboot system and do after-setup-scripts!"
+if is_wsl; then
+    echo "next step is .."
+    echo "0:(option) uninstall Firefox"
+    echo "1:setup Qsync"
+    echo "2:execute ./ssh_qsync.sh"
+    echo "3:reboot system and do after-setup-scripts!"
+fi

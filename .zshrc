@@ -1,8 +1,4 @@
 
-export GOPATH="$HOME/.go"
-export PATH="$PATH:$GOPATH/bin"
-export PATH=$PATH:/usr/local/go/bin
-
 bindkey "^?" backward-delete-char
 
 # Ctrl+Dでログアウトしてしまうことを防ぐ
@@ -159,4 +155,5 @@ eval "$(starship init zsh)"
 #    export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
 #fi
 
-[[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux -2
+# tmux自動起動（SSH接続時は起動しない）
+[[ -z "$TMUX" && -n "$PS1" && -z "$SSH_CONNECTION" ]] && exec tmux -2
