@@ -13,8 +13,13 @@ end
 local packer_bootstrap = ensure_packer()
 -- packer.nvim以外のプラグインが存在しない場合をtrueとする
 local plugin_dirs = vim.fn.glob(vim.fn.stdpath('data')..'/site/pack/packer/start/*', false, true)
-local non_packer = vim.tbl_filter(function(p) return not p:match('packer.nvim$') end, plugin_dirs)
-local plugins_empty = #non_packer == 0
+local plugins_empty = true
+for _, p in ipairs(plugin_dirs) do
+  if not p:match('packer%.nvim$') then
+    plugins_empty = false
+    break
+  end
+end
 
 require("packer").startup(function(use)
   use { "wbthomason/packer.nvim" }

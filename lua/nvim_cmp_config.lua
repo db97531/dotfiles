@@ -1,3 +1,6 @@
+  -- プラグインが未インストールの場合はスキップ
+  if vim.fn.empty(vim.fn.glob(vim.fn.stdpath('data')..'/site/pack/packer/start/nvim-cmp')) > 0 then return end
+
   -- Set up nvim-cmp.
   local cmp = require'cmp'
 
