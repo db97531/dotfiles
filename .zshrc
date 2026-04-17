@@ -90,6 +90,15 @@ alias sb='sqlitebrowser'
 alias chrome='google-chrome-stable'
 alias fd='fdfind'
 
+# Docker Composeの基本エイリアス
+alias dc='docker compose'
+
+# 頻繁に使うコマンド
+alias dcu='docker compose up -d'
+alias dcub='docker compose up -d --build'
+alias dcd='docker compose down'
+alias dcr='docker compose restart'
+
 # cdの後にlsを実行
 chpwd() { ls -la --color=auto }
 
@@ -145,9 +154,9 @@ bindkey '^x^p' pet-select
 
 eval "$(starship init zsh)"
 
-# WSL2のGUI設定
-if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
-    export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
-fi
+# WSL2(windows10)のGUI設定
+#if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+#    export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
+#fi
 
 [[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux -2
