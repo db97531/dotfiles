@@ -5,7 +5,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-require "bootstrap"
 require "plugins"
 require "nvim_cmp_config"
 
