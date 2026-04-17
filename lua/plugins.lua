@@ -52,9 +52,9 @@ require("packer").startup(function(use)
 
   use 'williamboman/mason-lspconfig.nvim'
   use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-cmdline'
-  use "hrsh7th/vim-vsnip"
-  use "hrsh7th/cmp-nvim-lsp"
+  use { 'hrsh7th/cmp-cmdline', requires = {'hrsh7th/nvim-cmp'} }
+  use { "hrsh7th/vim-vsnip", requires = {'hrsh7th/nvim-cmp'} }
+  use { "hrsh7th/cmp-nvim-lsp", requires = {'hrsh7th/nvim-cmp'} }
   use 'neovim/nvim-lspconfig'
   use 'mattn/vim-goimports'
   use 'thinca/vim-quickrun'
