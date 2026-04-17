@@ -98,8 +98,10 @@ require("packer").startup(function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   use {'thinca/vim-qfreplace'}
 
-  -- 初回クローン時は自動でPackerSync
-  if packer_bootstrap then
+  -- 初回クローン時、またはプラグインが未インストールの場合は自動でPackerSync
+  local plugin_dir = vim.fn.stdpath('data')..'/site/pack/packer/start/'
+  local plugins_empty = vim.fn.empty(vim.fn.glob(plugin_dir .. '*')) > 0
+  if packer_bootstrap or plugins_empty then
     require('packer').sync()
   end
 end)
