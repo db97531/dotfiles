@@ -240,8 +240,8 @@ cmp.setup.cmdline(":", {
 -- tree-sitterの設定（v0.10以降の新API対応）
 local ts_ok, ts_install = pcall(require, 'nvim-treesitter.install')
 if ts_ok then
-  -- tree-sitter CLIが不要なgit経由でビルド済みバイナリを取得する方式を使用
   ts_install.prefer_git = true
+  ts_install.compilers = { "gcc", "cc" }
 end
 
 -- パーサーの自動インストール設定
