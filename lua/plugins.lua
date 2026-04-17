@@ -140,41 +140,29 @@ require("mason").setup({
         }
     }
 })
-require('mason-lspconfig').setup_handlers({ function(server)
+local capabilities = require('cmp_nvim_lsp').default_capabilities(
+  vim.lsp.protocol.make_client_capabilities()
+)
 
-   local handlers = {
-       -- The first entry (without a key) will be the default handler
-       -- and will be called for each installed server that doesn't have
-       -- a dedicated handler.
-       ["lua_ls"] = function ()
-           local lspconfig = require("lspconfig")
-           lspconfig.lua_ls.setup {
-               settings = {
-                   Lua = {
-                       diagnostics = {
-                           globals = { "vim" }
-                       }
-                   }
-               }
-           }
-       end,
-   }
-
-   -- alt 1. Either pass handlers when setting up mason-lspconfig:
-   require("mason-lspconfig").setup({ handlers = handlers })
-  local opt = {
-    -- -- Function executed when the LSP server startup
-    -- on_attach = function(client, bufnr)
-    --   local opts = { noremap=true, silent=true }
-    --   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    --   vim.cmd 'autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)'
-    -- end,
-    capabilities = require('cmp_nvim_lsp').default_capabilities(
-      vim.lsp.protocol.make_client_capabilities()
-    )
+require('mason-lspconfig').setup({
+  handlers = {
+    -- デフォルトハンドラ: インストール済みサーバーすべてに適用
+    function(server)
+      require('lspconfig')[server].setup({ capabilities = capabilities })
+    end,
+    -- lua_ls のみ個別設定
+    ["lua_ls"] = function()
+      require('lspconfig').lua_ls.setup({
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            diagnostics = { globals = { "vim" } }
+          }
+        }
+      })
+    end,
   }
-  require('lspconfig')[server].setup(opt)
-end })
+})
 
 
 -- 設定の参考
