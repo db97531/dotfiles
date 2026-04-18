@@ -56,9 +56,9 @@ sudo apt install -y tmux
 # Golang 最新バージョンをインストール
 # https://zenn.dev/tamagram/articles/fd744d10e2e680
 if ! has_cmd go; then
-    sudo add-apt-repository ppa:longsleep/golang-backports
-    sudo apt update
-    sudo apt install golang-go
+    sudo add-apt-repository -y ppa:longsleep/golang-backports
+    sudo apt update -y
+    sudo apt install -y golang-go
 fi
 
 mkdir -p ~/.go
@@ -122,7 +122,7 @@ fi
 
 # starship
 if ! has_cmd starship; then
-    curl -sS https://starship.rs/install.sh | sh
+    curl -sS https://starship.rs/install.sh | sh -s -- --yes
 fi
 
 # tree-sitter CLI（nvim-treesitterのパーサーコンパイルに必要）
