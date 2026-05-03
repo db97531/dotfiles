@@ -53,17 +53,19 @@ sudo apt install -y tmux
 # エラーになったので削除、別スクリプトに
 #sudo apt install -y ctags
 
-# Golang 最新バージョンをインストール
-# https://zenn.dev/tamagram/articles/fd744d10e2e680
+# Golang 最新バージョンをインストール（公式バイナリから）
 if ! has_cmd go; then
-    sudo add-apt-repository -y ppa:longsleep/golang-backports
-    sudo apt update -y
-    sudo apt install -y golang-go
+    GO_LATEST=$(curl -s https://go.dev/dl/?mode=json | grep -oP '"version":\s*"\Kgo[0-9.]+' | head -1)
+    curl -LO "https://go.dev/dl/${GO_LATEST}.linux-amd64.tar.gz"
+    sudo rm -rf /usr/local/go
+    sudo tar -C /usr/local -xzf "${GO_LATEST}.linux-amd64.tar.gz"
+    rm "${GO_LATEST}.linux-amd64.tar.gz"
+    export PATH="$PATH:/usr/local/go/bin"
 fi
 
 mkdir -p ~/.go
 export GOPATH="$HOME/.go"
-export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
 
 # peco
 sudo apt install -y peco
